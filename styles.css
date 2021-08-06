@@ -1,0 +1,18 @@
+.app {
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.drag-area {
+    -webkit-app-region: drag;
+    width: 100%;
+    height: 38px;
+}
+
+.segment {
+    width: 240px;
+}
+
+.io-area {
+    display: flex;
+}

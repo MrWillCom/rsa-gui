@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html mode="ios">
 
 <head>
   <meta charset="UTF-8">
@@ -7,18 +7,26 @@
   <script type="module" src="./node_modules/@ionic/core/dist/ionic/ionic.esm.js"></script>
   <script nomodule src="./node_modules/@ionic/core/dist/ionic/ionic.js"></script>
   <link rel="stylesheet" href="./node_modules/@ionic/core/css/ionic.bundle.css" />
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-  <ion-segment>
-    <ion-segment-button value="decrypted">
-      <ion-label>Decrypted</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="encrypted">
-      <ion-label>Encrypted</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+  <ion-app class="app">
+    <div class="drag-area"></div>
+    <ion-segment class="segment" id="segment">
+      <ion-segment-button value="encrypt">
+        <ion-label>Encrypt</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="decrypt">
+        <ion-label>Decrypt</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <div class="io-area">
+      <ion-textarea class="input" id="input"></ion-textarea>
+      <p>Hello, World</p>
+    </div>
+  </ion-app>
+  <script src="script.js"></script>
 </body>
 
 </html>
