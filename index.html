@@ -24,14 +24,27 @@
     <ion-segment class="segment" id="segment">
       <ion-segment-button value="encrypt">
         <ion-label>Encrypt</ion-label>
+        <p class="selected-key">test-key-0</p>
       </ion-segment-button>
       <ion-segment-button value="decrypt">
         <ion-label>Decrypt</ion-label>
+        <p class="selected-key">test-key-1</p>
       </ion-segment-button>
     </ion-segment>
+    <div class="popup-selector-mask">
+      <div class="key-selector popup-selector" id="key-selector">
+        <button class="popup-selector-item">test-key-0</button>
+        <button class="popup-selector-item">test-key-1</button>
+        <button class="popup-selector-item">test-key-2</button>
+      </div>
+    </div>
     <div class="io-area">
-      <ion-textarea class="input" id="input"></ion-textarea>
-      <p class="output" id="output">Hello, World</p>
+      <div class="left">
+        <ion-textarea class="input" id="input"></ion-textarea>
+      </div>
+      <div class="right">
+        <p class="output" id="output"></p>
+      </div>
     </div>
   </ion-app>
   <script src="./scripts/main.js"></script>
