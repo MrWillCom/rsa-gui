@@ -1,9 +1,11 @@
 {
     "scripts": {
-        "start": "electron main.js"
+        "start": "electron ./main.js"
     },
     "dependencies": {
         "@ionic/core": "^5.6.13",
-        "electron": "^13.1.8"
+        "@vscode/codicons": "^0.0.21",
+        "electron": "^13.1.8",
+        "electron-store": "^8.0.0"
     }
 }

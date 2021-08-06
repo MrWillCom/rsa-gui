@@ -4,15 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <title>RSA GUI</title>
+  <meta name="color-scheme" content="light dark" />
   <script type="module" src="./node_modules/@ionic/core/dist/ionic/ionic.esm.js"></script>
   <script nomodule src="./node_modules/@ionic/core/dist/ionic/ionic.js"></script>
   <link rel="stylesheet" href="./node_modules/@ionic/core/css/ionic.bundle.css" />
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./node_modules/@vscode/codicons/dist/codicon.css">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/dark.css">
 </head>
 
-<body>
+<body class="dark">
   <ion-app class="app">
     <div class="drag-area"></div>
+    <div class="win32-window-controls">
+      <button class="control codicon codicon-chrome-minimize" id="minimize"></button>
+      <button class="control codicon codicon-chrome-maximize" id="maximize"></button>
+      <button class="control codicon codicon-chrome-close" id="close"></button>
+    </div>
     <ion-segment class="segment" id="segment">
       <ion-segment-button value="encrypt">
         <ion-label>Encrypt</ion-label>
@@ -23,10 +31,11 @@
     </ion-segment>
     <div class="io-area">
       <ion-textarea class="input" id="input"></ion-textarea>
-      <p>Hello, World</p>
+      <p class="output" id="output">Hello, World</p>
     </div>
   </ion-app>
-  <script src="script.js"></script>
+  <script src="./scripts/main.js"></script>
+  <script src="./scripts/renderer.js"></script>
 </body>
 
 </html>
