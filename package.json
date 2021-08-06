@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "start": "electron main.js"
+    },
+    "dependencies": {
+        "@ionic/core": "^5.6.13",
+        "electron": "^13.1.8"
+    }
+}
