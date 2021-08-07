@@ -2,6 +2,14 @@
     cursor: default;
 }
 
+body {
+    background: #fff;
+}
+
+body.dark {
+    background: #000;
+}
+
 .popup-selector-mask {
     position: fixed;
     top: 0;
@@ -113,6 +121,7 @@
 }
 
 .segment {
+    margin-top: 4px;
     width: 240px;
 }
 
@@ -133,6 +142,7 @@
     background-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.065);
     padding: 12px;
     border-radius: 12px;
+    border-radius: 8px;
 }
 
 .io-area * {
