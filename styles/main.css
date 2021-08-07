@@ -141,7 +141,6 @@ body.dark {
     height: 240px;
     background-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.065);
     padding: 12px;
-    border-radius: 12px;
     border-radius: 8px;
 }
 

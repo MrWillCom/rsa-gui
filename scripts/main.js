@@ -52,6 +52,11 @@ class popupSelector {
                 }
             }
 
+            itemEl.addEventListener('click', (ev) => {
+                this.show = false
+                this.onSelect(ev)
+            })
+
             this.selector.appendChild(itemEl)
         }
     }
@@ -67,14 +72,16 @@ class popupSelector {
         }
     }
 
-    get position (){ return this.position }
-    set position (value){
+    get position() { return this.position }
+    set position(value) {
         this.selector.style.setProperty('--left', `${value.x}px`)
         this.selector.style.setProperty('--top', `${value.y}px`)
     }
+
+    onSelect = () => { }
 }
 
-const keySelector = new popupSelector(document.querySelector('#key-selector'))
+const globalSelector = new popupSelector(document.querySelector('#global-selector'))
 
 const input = document.querySelector('#input')
 
@@ -82,6 +89,29 @@ const win32WindowControls = {
     minimize: document.querySelector('#minimize'),
     maximize: document.querySelector('#maximize'),
     close: document.querySelector('#close'),
+}
+
+const presentAlert = async (params) => {
+    const alert = document.createElement('ion-alert');
+    if (params.className) { alert.cssClass = params.className; }
+    if (params.header) { alert.header = params.header; }
+    if (params.subHeader) { alert.subHeader = params.subHeader; }
+    if (params.message) { alert.message = params.message; }
+    if (params.buttons) { alert.buttons = params.buttons; }
+
+    document.body.appendChild(alert);
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    if (typeof params.callback == 'function') { params.callback(role) }
+}
+
+// Todo: create a state manager
+var State = {
+    keys: {
+        encrypt: 'test.outbound',
+        decrypt: 'test.inbound',
+    },
 }
 
 segment.value = 'encrypt'
@@ -96,7 +126,32 @@ var historySegmentValue = segment.value
 for (const button of segmentButtons) {
     button.addEventListener('click', (ev) => {
         if (historySegmentValue === ev.target.value) {
-            keySelector.show = true
+            require('../rsa-cli/src/commands/list')().then((keys) => {
+                var listItems = []
+                for (const keyName of keys) {
+                    listItems.push({
+                        text: keyName,
+                    })
+                }
+                globalSelector.items = listItems
+                globalSelector.onSelect = (e) => {
+                    State.keys[ev.target.value] = e.target.innerText;
+                }
+                globalSelector.show = true
+            }).catch((err) => {
+                switch (err.code) {
+                    case 'RSA_CLI:KEY_LIB_EMPTY':
+                        presentAlert({
+                            header: 'Key library is empty',
+                            message: "You don't have any keys in the library.<br>To start encrypting/decrypting, generate/import one first.",
+                            buttons: ['OK']
+                        })
+                        break;
+
+                    default:
+                        break;
+                }
+            })
         }
         historySegmentValue = segment.value
     })
