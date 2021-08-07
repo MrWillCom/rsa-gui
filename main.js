@@ -3,17 +3,15 @@ const electron = require('electron')
 const path = require('path')
 const Store = require('electron-store')
 
-const store = new Store();
-
 class Background {
   constructor() {
     this.window = null;
     this.tray = null;
     this.store = new Store({
-      windowWidth: {
-        width: { type: 'number', default: 1440 },
-        height: { type: 'number', default: 840 },
-      },
+      window: {
+        width: { type: 'number', default: 800 },
+        height: { type: 'number', default: 600 },
+      }
     });
 
     this.init();
@@ -25,8 +23,10 @@ class Background {
 
   createWindow() {
     const win = new electron.BrowserWindow({
-      width: 800,
-      height: 600,
+      width: this.store.get('window.width') || 800,
+      height: this.store.get('window.height') || 600,
+      minWidth: 300,
+      minHeight: 360,
       titleBarStyle: 'hiddenInset',
       title: 'RSA',
       frame: process.platform !== 'win32',
