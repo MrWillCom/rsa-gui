@@ -5,6 +5,7 @@
         "build": "babel src --out-dir lib --copy-files"
     },
     "dependencies": {
+        "@babel/plugin-transform-runtime": "^7.15.0",
         "@electron/remote": "^1.2.1",
         "@vscode/codicons": "^0.0.21",
         "electron-store": "^8.0.0",

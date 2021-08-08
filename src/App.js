@@ -6,7 +6,6 @@ import Segment from './components/Segment';
 import TextArea from './components/TextArea';
 import DropdownButton from './components/DropdownButton';
 
-
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -15,6 +14,10 @@ class App extends React.Component {
         this.state = {
             mode: this.store.get('app.mode'),
             output: '',
+            keyList: {},
+        }
+        this.RSA_CLI = {
+            list: require('../rsa-cli/src/commands/list'),
         }
     }
     render() {
@@ -31,11 +34,7 @@ class App extends React.Component {
                         <TextArea
                             placeholder={`Type here to ${['encrypt', 'decrypt'][this.state.mode]}...`}
                             className="input" />
-                        <DropdownButton options={{
-                            'test-key-0': 'test-key-0',
-                            'test-key-1': 'test-key-1',
-                            'test-key-2': 'test-key-2',
-                        }} />
+                        <DropdownButton options={this.state.keyList} />
                     </div>
                     <div className="right">
                         <p className="output">Hello, World</p>
@@ -43,6 +42,13 @@ class App extends React.Component {
                 </div>
             </div>
         </>
+    }
+    componentDidMount = async () => {
+        var options = {}
+        for (const item of await this.RSA_CLI.list()) {
+            options[item] = item
+        }
+        this.setState({ keyList: options })
     }
     setMode(mode) {
         mode = parseInt(mode, 10)

@@ -8,7 +8,7 @@ class DropdownButton extends React.Component {
 
         this.state = {
             open: false,
-            selected: this.props.selected || Object.keys(this.props.options)[0],
+            selected: this.props.selected || Object.keys(this.props.options)[0] || 'Unset',
             optionsListHeight: 0,
         }
     }
@@ -32,7 +32,10 @@ class DropdownButton extends React.Component {
         </div>
     }
     toggleDropdown = () => {
+        this.setState({ optionsListHeight: this.optionsListRef.current.clientHeight })
         this.setState({ open: !this.state.open });
+    }
+    componentDidMount = () => {
         this.setState({ optionsListHeight: this.optionsListRef.current.clientHeight })
     }
     select = (selected) => {
