@@ -1,0 +1,7 @@
+.TextArea {
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 0;
+    background-color: transparent;
+}

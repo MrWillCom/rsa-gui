@@ -2,7 +2,7 @@
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "build": "babel src --out-dir lib --source-maps --copy-files"
+        "build": "babel src --out-dir lib --copy-files"
     },
     "dependencies": {
         "@electron/remote": "^1.2.1",

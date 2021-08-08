@@ -34,10 +34,9 @@ class Background {
       minWidth: 300,
       minHeight: 360,
       titleBarStyle: 'hiddenInset',
-      title: 'RSA',
+      title: 'RSA GUI',
       frame: process.platform !== 'win32',
       show: false,
-      backgroundColor: electron.nativeTheme.shouldUseDarkColors ? '#fff' : '#000',
       webPreferences: {
         webSecurity: false,
         nodeIntegration: true,

@@ -1,9 +1,33 @@
 @import url(components/Win32TitleBar.css);
 @import url(components/Segment.css);
+@import url(components/TextArea.css);
+@import url(components/DropdownButton.css);
 
 body {
-    background-color: #fff;
+    background-color: var(--white);
     font-family: 'Segoe UI', 'Segoe', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Arial', sans-serif;
+    --white: #fff;
+    --grey-1: #88888808;
+    --grey-2: #8881;
+    --accent: #0067c0;
+    --button-bg: #fbfbfb;
+    --button-bg-hover: #f6f6f6;
+    --button-bg-active: #f5f5f5;
+    --button-border: #ebebeb;
+    --timing-func: cubic-bezier(0, 0, 0, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        --white: #101010;
+        --grey-1: #88888818;
+        --grey-2: #88888820;
+        --accent: #4cc2ff;
+        --button-bg: #2d2d2d;
+        --button-bg-hover: #323232;
+        --button-bg-active: #272727;
+        --button-border: #303030;
+    }
 }
 
 .main {
@@ -13,8 +37,29 @@ body {
     align-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-    }
+.io-area {
+    margin-top: 6px;
+    display: flex;
+    border-radius: 6px;
+    background-color: var(--grey-2);
+    padding: 2vw;
+    width: 80vw;
+    height: 70vh;
+}
+
+.io-area>* {
+    padding: 2vw;
+    width: 50%;
+    margin: 0;
+    font-size: calc(1vw + 12px);
+}
+
+.io-area>.right {
+    border-left: 1px solid var(--grey-1);
+}
+
+.io-area>.left>.input, .io-area>.right>.output {
+    width: 100%;
+    height: calc(100% - 2vw - 34px);
+    margin: 0;
 }

@@ -7,8 +7,6 @@ class Segment extends React.Component {
         this.state = {
             selected: typeof this.props.selected == 'number' ? this.props.selected : 0
         }
-
-        console.log({Segment: this.state.selected})
     }
     render() {
         var optionsElement = []
