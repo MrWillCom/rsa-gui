@@ -1,6 +1,4 @@
-// const { app, BrowserWindow } = require('electron')
 const electron = require('electron')
-const path = require('path')
 const Store = require('electron-store')
 
 class Background {
@@ -11,7 +9,13 @@ class Background {
       window: {
         width: { type: 'number', default: 800 },
         height: { type: 'number', default: 600 },
-      }
+        x: { type: 'number' },
+        y: { type: 'number' },
+        maximized: { type: 'boolean', default: false },
+      },
+      app: {
+        mode: { type: 'number', default: 0 },
+      },
     });
 
     this.init();
@@ -25,6 +29,8 @@ class Background {
     const win = new electron.BrowserWindow({
       width: this.store.get('window.width') || 800,
       height: this.store.get('window.height') || 600,
+      x: this.store.get('window.x') || null,
+      y: this.store.get('window.y') || null,
       minWidth: 300,
       minHeight: 360,
       titleBarStyle: 'hiddenInset',
@@ -67,8 +73,36 @@ class Background {
 
   handleWindowEvents() {
     this.window.once('ready-to-show', () => {
+      if (this.store.get('window.maximized') === true) {
+        this.window.maximize()
+      }
+
       this.window.show();
     });
+
+    this.window.on('resize', () => {
+      if (!this.window.isMaximized()) {
+        this.store.set('window.width', this.window.getSize()[0])
+        this.store.set('window.height', this.window.getSize()[1])
+        this.store.set('window.x', this.window.getPosition()[0])
+        this.store.set('window.y', this.window.getPosition()[1])
+      }
+    })
+
+    this.window.on('moved', () => {
+      if (!this.window.isMaximized()) {
+        this.store.set('window.x', this.window.getPosition()[0])
+        this.store.set('window.y', this.window.getPosition()[1])
+      }
+    })
+
+    this.window.on('maximize', () => {
+      this.store.set('window.maximized', true)
+    })
+
+    this.window.on('unmaximize', () => {
+      this.store.set('window.maximized', false)
+    })
   }
 
   handleIpcMainEvents() { }

@@ -1,0 +1,36 @@
+.Segment {}
+
+.Segment>.Segment-Option {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin: 0 2px;
+}
+
+.Segment>.Segment-Option:hover, .Segment>.Segment-Option:focus-visible {
+    background-color: #88888808;
+}
+
+.Segment>.Segment-Option:active, .Segment>.Segment-Option.Selected {
+    background-color: #8881;
+}
+
+.Segment>.Segment-Option::after {
+    content: '';
+    position: relative;
+    top: 5px;
+    left: 50%;
+    width: 0px;
+    height: 3px;
+    display: block;
+    border-radius: 3px;
+    background-color: #0067c0;
+}
+
+.Segment>.Segment-Option.Selected::after {
+    left: calc(50% - 7px);
+    width: 14px;
+    transition: all 0.15s;
+}

@@ -1,19 +1,10 @@
-body {
-    background-color: #fff;
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-    }
-}
-
 .Win32TitleBar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 32px;
+    -webkit-app-region: drag;
     display: flex;
     justify-content: flex-end;
 }
@@ -23,6 +14,7 @@ body {
     border: none;
     outline: none;
     background-color: transparent;
+    -webkit-app-region: no-drag;
 }
 
 .Win32TitleBar>.control:hover {

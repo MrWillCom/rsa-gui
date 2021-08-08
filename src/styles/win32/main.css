@@ -1,1 +1,20 @@
 @import url(components/Win32TitleBar.css);
+@import url(components/Segment.css);
+
+body {
+    background-color: #fff;
+    font-family: 'Segoe UI', 'Segoe', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Arial', sans-serif;
+}
+
+.main {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+}
