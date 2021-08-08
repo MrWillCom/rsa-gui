@@ -1,12 +1,22 @@
 {
     "main": "main.js",
     "scripts": {
-        "start": "electron ."
+        "start": "electron .",
+        "build": "babel src --out-dir lib --source-maps --copy-files"
     },
     "dependencies": {
-        "@ionic/core": "^5.6.13",
+        "@electron/remote": "^1.2.1",
         "@vscode/codicons": "^0.0.21",
         "electron": "^13.1.8",
-        "electron-store": "^8.0.0"
+        "electron-store": "^8.0.0",
+        "normalize.css": "^8.0.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.14.8",
+        "@babel/core": "^7.15.0",
+        "@babel/preset-env": "^7.15.0",
+        "@babel/preset-react": "^7.14.5"
     }
 }

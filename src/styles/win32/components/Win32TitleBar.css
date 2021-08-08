@@ -1,0 +1,44 @@
+body {
+    background-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+}
+
+.Win32TitleBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 32px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Win32TitleBar>.control {
+    width: 46px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.Win32TitleBar>.control:hover {
+    background-color: #8884;
+}
+
+.Win32TitleBar>.control:active {
+    background-color: #8883;
+}
+
+.Win32TitleBar>.control.close:hover {
+    color: #fff;
+    background-color: #c42b1c;
+}
+
+.Win32TitleBar>.control.close:active {
+    color: #fff;
+    background-color: #c42b1ccc;
+}

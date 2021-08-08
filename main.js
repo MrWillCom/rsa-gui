@@ -33,7 +33,6 @@ class Background {
       show: false,
       backgroundColor: electron.nativeTheme.shouldUseDarkColors ? '#fff' : '#000',
       webPreferences: {
-        preload: path.join(__dirname, 'scripts/preload.js'),
         webSecurity: false,
         nodeIntegration: true,
         enableRemoteModule: true,
@@ -41,7 +40,7 @@ class Background {
       },
     })
 
-    win.loadFile('index.html')
+    win.loadFile('lib/index.html')
 
     this.window = win
   }
@@ -72,22 +71,7 @@ class Background {
     });
   }
 
-  handleIpcMainEvents() {
-    electron.ipcMain.on('minimize', () => {
-      this.window.minimize()
-    })
-
-    this.window.webContents.send('maximize', this.window.isMaximized());
-    electron.ipcMain.on('maximize', () => {
-      const isMaximized = this.window.isMaximized();
-      isMaximized ? this.window.unmaximize() : this.window.maximize();
-      this.window.webContents.send('maximize', isMaximized);
-    });
-
-    electron.ipcMain.on('close', () => {
-      this.window.close()
-    })
-  }
+  handleIpcMainEvents() { }
 }
 
 new Background()
