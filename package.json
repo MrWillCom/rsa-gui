@@ -1,23 +1,51 @@
 {
+    "name": "rsa-gui",
+    "description": "The GUI for RSA CLI.",
+    "version": "0.0.0",
+    "author": {
+        "name": "MrWillCom",
+        "email": "mr.will.com@outlook.com",
+        "url": "https://github.com/MrWillCom"
+    },
+    "private": true,
     "main": "main.js",
+    "build": {
+        "appId": "mrwillcom.rsa-gui",
+        "productName": "RSA GUI",
+        "copyright": "Copyright © 2021 MrWillCom",
+        "files": [
+            "LICENSE",
+            "main.js",
+            "babel.config.json",
+            "lib/"
+        ],
+        "mac": {
+            "category": "public.app-category.utilities"
+        }
+    },
     "scripts": {
         "start": "electron .",
-        "build": "babel src --out-dir lib --copy-files"
+        "build": "babel src --out-dir lib --copy-files",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder"
     },
     "dependencies": {
         "@babel/plugin-transform-runtime": "^7.15.0",
+        "@babel/runtime": "^7.14.8",
         "@electron/remote": "^1.2.1",
         "@vscode/codicons": "^0.0.21",
         "electron-store": "^8.0.0",
         "normalize.css": "^8.0.1",
         "react": "^17.0.2",
-        "react-dom": "^17.0.2"
+        "react-dom": "^17.0.2",
+        "rsa-cli": "^0.1.1-beta.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.8",
         "@babel/core": "^7.15.0",
         "@babel/preset-env": "^7.15.0",
         "@babel/preset-react": "^7.14.5",
-        "electron": "^13.1.8"
+        "electron": "^13.1.8",
+        "electron-builder": "^22.11.7"
     }
 }

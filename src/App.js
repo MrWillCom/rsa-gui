@@ -1,5 +1,6 @@
 import React from 'react'
 import Store from 'electron-store'
+import RSA_CLI from 'rsa-cli'
 
 import TitleBar from './components/TitleBar';
 import Segment from './components/Segment';
@@ -18,17 +19,6 @@ class App extends React.Component {
             keyList: {},
             publicKey: this.store.get('app.publicKey') || '',
             privateKey: this.store.get('app.privateKey') || '',
-        }
-        this.RSA_CLI = {
-            help: require('../rsa-cli/src/commands/help'),
-            version: require('../rsa-cli/src/commands/version'),
-            generate: require('../rsa-cli/src/commands/generate'),
-            import: require('../rsa-cli/src/commands/import'),
-            encrypt: require('../rsa-cli/src/commands/encrypt'),
-            decrypt: require('../rsa-cli/src/commands/decrypt'),
-            get: require('../rsa-cli/src/commands/get'),
-            list: require('../rsa-cli/src/commands/list'),
-            remove: require('../rsa-cli/src/commands/remove'),
         }
     }
     render() {
@@ -81,7 +71,7 @@ class App extends React.Component {
         </>
     }
     componentDidMount = async () => {
-        const keyList = await this.RSA_CLI.list()
+        const keyList = await RSA_CLI.list()
         var options = {}
         for (const item of keyList) {
             options[item] = item
@@ -107,7 +97,7 @@ class App extends React.Component {
         }
     }
     encrypt = async () => {
-        const encrypted = await this.RSA_CLI.encrypt({
+        const encrypted = await RSA_CLI.encrypt({
             keyName: this.state.publicKey,
             object: this.state.input,
             params: { input: false }
@@ -115,7 +105,7 @@ class App extends React.Component {
         this.setState({ output: encrypted })
     }
     decrypt = async () => {
-        const decrypted = await this.RSA_CLI.decrypt({
+        const decrypted = await RSA_CLI.decrypt({
             keyName: this.state.privateKey,
             object: this.state.input,
             params: { input: false }

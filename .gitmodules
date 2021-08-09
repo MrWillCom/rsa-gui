@@ -1,3 +1,0 @@
-[submodule "rsa-cli"]
-	path = rsa-cli
-	url = git@github.com:MrWillCom/rsa-cli.git
