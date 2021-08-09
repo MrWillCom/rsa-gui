@@ -1,0 +1,26 @@
+.Segment {
+    background-color: var(--white-2);
+    border: 1px solid var(--border-1);
+    border-radius: 7px;
+    font-size: 14px;
+}
+
+.Segment>.Segment-Option {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    outline: none;
+    padding: 2px 14px;
+}
+
+.Segment>.Segment-Option:active {
+    background-color: var(--white-1);
+    border: 1px solid var(--border-2);
+    box-shadow: 0 1px 0 var(--shadow-0);
+}
+
+.Segment>.Segment-Option.Selected {
+    background-color: var(--white-0);
+    border: 1px solid var(--border-2);
+    box-shadow: 0 1px 0 var(--shadow-0);
+}

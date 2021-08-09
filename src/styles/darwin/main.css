@@ -1,11 +1,32 @@
 @import url(components/DragArea.css);
+@import url(components/Segment.css);
 
 body {
-    background-color: #f6f6f6;
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    background-color: var(--white-1);
+
+    --white-0: #fff;
+    --white-1: #f6f6f6;
+    --white-2: #eeeeee;
+    --white-3: #e9e9e9;
+    --border-0: #e4e4e4;
+    --border-1: #dfdfdf;
+    --border-2: #d0d0d0;
+    --shadow-0: #a9a9a9;
+}
+
+.main {
+    margin-top: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #282828;
+        --white-0: #2272c2;
+        --white-1: #282828;
+        --white-2: #2272c2;
+        --white-3: #2272c2;
     }
 }
