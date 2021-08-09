@@ -2,10 +2,11 @@
 @import url(components/Segment.css);
 @import url(components/TextArea.css);
 @import url(components/DropdownButton.css);
-
 body {
     background-color: var(--white);
     font-family: 'Segoe UI', 'Segoe', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Arial', sans-serif;
+    height: 100vh;
+    overflow: hidden;
     --white: #fff;
     --grey-1: #88888808;
     --grey-2: #8881;
@@ -39,27 +40,35 @@ body {
 
 .io-area {
     margin-top: 6px;
-    display: flex;
     border-radius: 6px;
     background-color: var(--grey-2);
     padding: 2vw;
     width: 80vw;
     height: 70vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.io-area>* {
-    padding: 2vw;
+.io-area>.top {
+    display: flex;
+    height: calc(70vh - 36px);
+}
+
+.io-area>.top>* {
     width: 50%;
     margin: 0;
+    padding: 2vw;
     font-size: calc(1vw + 12px);
+    margin-bottom: 4px;
+    transition: all 0.15s;
 }
 
-.io-area>.right {
-    border-left: 1px solid var(--grey-1);
+.io-area>.top>.output {
+    word-break: break-all;
+    border-left: 1px solid var(--button-border);
+    overflow-y: auto;
 }
 
-.io-area>.left>.input, .io-area>.right>.output {
-    width: 100%;
-    height: calc(100% - 2vw - 34px);
-    margin: 0;
+.io-area>.top>.text-smaller {
+    font-size: calc(1vw + 8px);
 }

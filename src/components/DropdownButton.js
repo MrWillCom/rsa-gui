@@ -8,8 +8,8 @@ class DropdownButton extends React.Component {
 
         this.state = {
             open: false,
-            selected: this.props.selected || Object.keys(this.props.options)[0] || 'Unset',
-            optionsListHeight: 0,
+            optionsListHeight: 64,
+            overflowOffset: 0,
         }
     }
     render() {
@@ -17,29 +17,45 @@ class DropdownButton extends React.Component {
         for (const option in this.props.options) {
             optionsList.push(
                 <li className="DropdownButton-Option" key={option}>
-                    <button className="DropdownButton-Option-Button" onClick={() => { this.select(option) }}>{this.props.options[option]}</button>
+                    <button className="DropdownButton-Option-Button" onClick={() => { this.setState({ open: false }); this.props.onSelect(option) }}>{this.props.options[option]}</button>
                 </li>
             )
         }
 
         return <div className={`DropdownButton ${typeof this.props.className == 'string' ? this.props.className : ''}`}>
-            <button className="DropdownButton-Button" onClick={this.toggleDropdown}>{this.state.selected}</button>
+            {this.props.label ? <span className="DropdownButton-Label">{this.props.label}</span> : <></>}
+            <button className="DropdownButton-Button" onClick={this.toggleDropdown}>{this.props.selected}</button>
             <ul
                 className={`DropdownButton-Options ${this.state.open ? 'open' : ''}`}
                 ref={this.optionsListRef}
-                style={{ '--dropdown-height': `${this.state.optionsListHeight}px` }}
+                style={{
+                    '--dropdown-height': `${this.state.optionsListHeight}px`,
+                    '--overflow-offset': `${this.state.overflowOffset}px`,
+                }}
             >{optionsList}</ul>
         </div>
     }
     toggleDropdown = () => {
-        this.setState({ optionsListHeight: this.optionsListRef.current.clientHeight })
+        this.updateHeight();
+        this.updateOverflowOffset();
         this.setState({ open: !this.state.open });
     }
     componentDidMount = () => {
+        this.optionsListRef.current.addEventListener('load', () => {
+            this.updateHeight();
+            this.updateOverflowOffset();
+            console.log('load!')
+        })
+        window.addEventListener('resize', this.updateOverflowOffset);
+    }
+    updateHeight = () => {
         this.setState({ optionsListHeight: this.optionsListRef.current.clientHeight })
     }
-    select = (selected) => {
-        this.setState({ open: false, selected: selected });
+    updateOverflowOffset = () => {
+        const overflowHeight = window.innerHeight - (this.optionsListRef.current.offsetTop + this.optionsListRef.current.clientHeight) - 4;
+        if (overflowHeight < 0) {
+            this.setState({ overflowOffset: overflowHeight })
+        }
     }
 }
 

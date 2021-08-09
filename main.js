@@ -31,8 +31,8 @@ class Background {
       height: this.store.get('window.height') || 600,
       x: this.store.get('window.x') || null,
       y: this.store.get('window.y') || null,
-      minWidth: 300,
-      minHeight: 360,
+      minWidth: 360,
+      minHeight: 400,
       titleBarStyle: 'hiddenInset',
       title: 'RSA GUI',
       frame: process.platform !== 'win32',
@@ -105,6 +105,8 @@ class Background {
   }
 
   handleIpcMainEvents() { }
+
+  handleGlobalShortcut() { }
 }
 
 new Background()
