@@ -52,7 +52,7 @@ class DropdownButton extends React.Component {
         this.setState({ optionsListHeight: this.optionsListRef.current.clientHeight })
     }
     updateOverflowOffset = () => {
-        const overflowHeight = window.innerHeight - (this.optionsListRef.current.offsetTop + this.optionsListRef.current.clientHeight) - 4;
+        const overflowHeight = window.innerHeight - (this.optionsListRef.current.getBoundingClientRect().top + this.optionsListRef.current.clientHeight) - 4;
         if (overflowHeight < 0) {
             this.setState({ overflowOffset: overflowHeight })
         }

@@ -39,6 +39,7 @@ class App extends React.Component {
                     options={['Encrypt', 'Decrypt']}
                     onChange={mode => this.setMode(mode)}
                     selected={this.state.mode}
+                    className="mode-segment"
                 />
                 <div className="io-area">
                     <div className="top">

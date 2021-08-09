@@ -2,9 +2,11 @@
     display: inline-block;
 }
 
-.DropdownButton>.DropdownButton-Label{
+.DropdownButton>.DropdownButton-Label {
+    display: block;
     font-size: 12px;
     color: #888;
+    margin: 2px;
 }
 
 .DropdownButton>.DropdownButton-Button {
@@ -15,13 +17,45 @@
     outline: none;
     padding: 2px 14px;
     font-size: 14px;
+    margin: 2px;
 }
 
 .DropdownButton>.DropdownButton-Options {
     position: absolute;
+    transform: translateY(calc(2px + var(--overflow-offset)));
     list-style: none;
     width: max-content;
     margin: 0;
     padding: 0;
-    background-color: #fff;
+    background-color: var(--white-transparent-0);
+    backdrop-filter: var(--blur-0);
+    border-radius: 6px;
+    padding: 6px;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 0 4px var(--shadow-0);
+    transition: all 0.3s;
+}
+
+.DropdownButton>.DropdownButton-Options.open {
+    opacity: 1;
+    pointer-events: initial;
+    transition: all 0s;
+}
+
+.DropdownButton>.DropdownButton-Options>.DropdownButton-Option>.DropdownButton-Option-Button {
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background-color: transparent;
+    text-align: left;
+    padding: 4px 10px;
+    font-size: 14px;
+}
+
+.DropdownButton>.DropdownButton-Options>.DropdownButton-Option>.DropdownButton-Option-Button:hover, .DropdownButton>.DropdownButton-Options>.DropdownButton-Option>.DropdownButton-Option-Button:focus-visible {
+    background-color: var(--accent-0);
+    color: var(--white-0);
 }
