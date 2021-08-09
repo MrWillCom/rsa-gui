@@ -1,6 +1,5 @@
 import React from 'react'
 import Store from 'electron-store'
-import { ipcRenderer } from 'electron';
 
 import TitleBar from './components/TitleBar';
 import Segment from './components/Segment';
@@ -13,7 +12,7 @@ class App extends React.Component {
 
         this.store = new Store()
         this.state = {
-            mode: this.store.get('app.mode'),
+            mode: this.store.get('app.mode') || (() => { this.store.set('app.mode', 0); return 0 })(),
             input: '',
             output: '',
             keyList: {},
