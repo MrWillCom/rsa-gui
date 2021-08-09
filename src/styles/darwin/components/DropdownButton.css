@@ -1,0 +1,27 @@
+.DropdownButton {
+    display: inline-block;
+}
+
+.DropdownButton>.DropdownButton-Label{
+    font-size: 12px;
+    color: #888;
+}
+
+.DropdownButton>.DropdownButton-Button {
+    background-color: var(--white-1);
+    border: 1px solid var(--border-2);
+    border-radius: 6px;
+    box-shadow: 0 1px 0 var(--shadow-0);
+    outline: none;
+    padding: 2px 14px;
+    font-size: 14px;
+}
+
+.DropdownButton>.DropdownButton-Options {
+    position: absolute;
+    list-style: none;
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
