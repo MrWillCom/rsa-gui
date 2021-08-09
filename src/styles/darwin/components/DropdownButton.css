@@ -10,7 +10,7 @@
 }
 
 .DropdownButton>.DropdownButton-Button {
-    background-color: var(--white-1);
+    background-color: var(--white-0);
     border: 1px solid var(--border-2);
     border-radius: 6px;
     box-shadow: 0 1px 0 var(--shadow-0);
@@ -57,5 +57,5 @@
 
 .DropdownButton>.DropdownButton-Options>.DropdownButton-Option>.DropdownButton-Option-Button:hover, .DropdownButton>.DropdownButton-Options>.DropdownButton-Option>.DropdownButton-Option-Button:focus-visible {
     background-color: var(--accent-0);
-    color: var(--white-0);
+    color: var(--txt-on-accent-0);
 }
