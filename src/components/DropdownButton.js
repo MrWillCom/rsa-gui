@@ -41,11 +41,8 @@ class DropdownButton extends React.Component {
         this.setState({ open: !this.state.open });
     }
     componentDidMount = () => {
-        this.optionsListRef.current.addEventListener('load', () => {
-            this.updateHeight();
-            this.updateOverflowOffset();
-            console.log('load!')
-        })
+        this.updateHeight();
+        this.updateOverflowOffset();
         window.addEventListener('resize', this.updateOverflowOffset);
     }
     updateHeight = () => {

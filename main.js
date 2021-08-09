@@ -57,8 +57,10 @@ class Background {
       this.handleIpcMainEvents();
 
       electron.app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
+        if (electron.BrowserWindow.getAllWindows().length === 0) {
           this.createWindow()
+          this.handleWindowEvents();
+          this.handleIpcMainEvents();
         }
       })
     })
