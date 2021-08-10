@@ -71,7 +71,7 @@ class App extends React.Component {
         </>
     }
     componentDidMount = async () => {
-        const keyList = await RSA_CLI.list()
+        const keyList = await RSA_CLI.list({ params: { quiet: true } })
         var options = {}
         for (const item of keyList) {
             options[item] = item
@@ -100,7 +100,7 @@ class App extends React.Component {
         const encrypted = await RSA_CLI.encrypt({
             keyName: this.state.publicKey,
             object: this.state.input,
-            params: { input: false }
+            params: { quiet: true }
         })
         this.setState({ output: encrypted })
     }
@@ -108,7 +108,7 @@ class App extends React.Component {
         const decrypted = await RSA_CLI.decrypt({
             keyName: this.state.privateKey,
             object: this.state.input,
-            params: { input: false }
+            params: { quiet: true }
         })
         this.setState({ output: decrypted })
     }
