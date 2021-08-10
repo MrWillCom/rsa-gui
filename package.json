@@ -9,25 +9,14 @@
     },
     "private": true,
     "main": "main.js",
-    "build": {
-        "appId": "mrwillcom.rsa-gui",
-        "productName": "RSA GUI",
-        "copyright": "Copyright © 2021 MrWillCom",
-        "files": [
-            "LICENSE",
-            "main.js",
-            "babel.config.json",
-            "lib/"
-        ],
-        "mac": {
-            "category": "public.app-category.utilities"
-        }
-    },
     "scripts": {
         "start": "electron .",
         "build": "babel src --out-dir lib --copy-files",
         "pack": "electron-builder --dir",
-        "dist": "electron-builder"
+        "dist": "electron-builder",
+        "dist-win": "electron-builder --win --x64 && electron-builder --win --ia32 && electron-builder --win --arm64",
+        "dist-mac": "electron-builder --mac --x64",
+        "dist-linux": "electron-builder --linux"
     },
     "dependencies": {
         "@babel/plugin-transform-runtime": "^7.15.0",

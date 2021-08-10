@@ -1,0 +1,22 @@
+appId: mrwillcom.rsa-gui
+productName: RSA GUI
+copyright: Copyright © 2021 MrWillCom
+
+mac:
+  darkModeSupport: true
+  category: public.app-category.utilities
+  target:
+    - dmg
+
+win:
+  target:
+    - nsis
+    - zip
+
+nsis:
+  oneClick: false
+  perMachine: true
+  allowToChangeInstallationDirectory: true
+
+linux:
+  category: Utility
