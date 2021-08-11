@@ -1,0 +1,53 @@
+.Dialog-Mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dialog-mask-bg);
+    --main-content-padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.05);
+    transition: all 167ms var(--timing-func-accelerate);
+}
+
+.Dialog-Mask.Open {
+    opacity: 1;
+    pointer-events: initial;
+    transform: scale(1);
+    transition-timing-function: var(--timing-func-decelerate);
+}
+
+.Dialog {
+    background-color: var(--dialog-bg);
+    border: 1px solid var(--dialog-border);
+    border-radius: 8px;
+    width: 320px;
+    box-shadow: 0px 8px 12px #0004;
+}
+
+.DialogHeader {
+    padding: 0 var(--main-content-padding);
+    padding-top: var(--main-content-padding);
+    font-size: 20px;
+    font-weight: 500;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.DialogContent {
+    padding: 0 var(--main-content-padding);
+    padding-bottom: var(--main-content-padding);
+    font-size: 14px;
+}
+
+.DialogFooter {
+    padding: var(--main-content-padding);
+    background-color: var(--dialog-footer-bg);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

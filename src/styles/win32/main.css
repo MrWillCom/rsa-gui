@@ -2,6 +2,7 @@
 @import url(components/Segment.css);
 @import url(components/TextArea.css);
 @import url(components/DropdownButton.css);
+@import url(components/Dialog.css);
 
 body {
     background-color: var(--white);
@@ -16,7 +17,8 @@ body {
     --button-bg-hover: #f6f6f6;
     --button-bg-active: #f5f5f5;
     --button-border: #ebebeb;
-    --timing-func: cubic-bezier(0, 0, 0, 1);
+    --timing-func-decelerate: cubic-bezier(0, 0, 0, 1);
+    --timing-func-accelerate: cubic-bezier(1, 0, 1, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,6 +31,11 @@ body {
         --button-bg-hover: #323232;
         --button-bg-active: #272727;
         --button-border: #303030;
+        --dialog-mask-bg: #0002;
+        --dialog-bg: #2b2b2b;
+        --dialog-border: #8881;
+        --dialog-shadow: #0002;
+        --dialog-footer-bg: #202020;
     }
 }
 

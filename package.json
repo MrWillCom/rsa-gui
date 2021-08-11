@@ -23,6 +23,7 @@
         "@babel/runtime": "^7.14.8",
         "@electron/remote": "^1.2.1",
         "@vscode/codicons": "^0.0.21",
+        "bootstrap-icons": "^1.5.0",
         "electron-store": "^8.0.0",
         "normalize.css": "^8.0.1",
         "react": "^17.0.2",

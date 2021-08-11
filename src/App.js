@@ -6,6 +6,7 @@ import TitleBar from './components/TitleBar';
 import Segment from './components/Segment';
 import TextArea from './components/TextArea';
 import DropdownButton from './components/DropdownButton';
+import Dialog, { DialogHeader, DialogContent, DialogFooter } from './components/Dialog';
 
 class App extends React.Component {
     constructor(props) {
@@ -16,9 +17,10 @@ class App extends React.Component {
             mode: this.store.get('app.mode') || (() => { this.store.set('app.mode', 0); return 0 })(),
             input: '',
             output: '',
-            keyList: {},
-            publicKey: this.store.get('app.publicKey') || '',
-            privateKey: this.store.get('app.privateKey') || '',
+            isDialogOpen: false,
+            keyList: [],
+            publicKey: this.store.get('app.publicKey') || <i className="bi bi-chevron-down"></i>,
+            privateKey: this.store.get('app.privateKey') || <i className="bi bi-chevron-down"></i>,
         }
     }
     render() {
@@ -27,7 +29,13 @@ class App extends React.Component {
             <div className="main">
                 <Segment
                     options={['Encrypt', 'Decrypt']}
-                    onChange={mode => this.setMode(mode)}
+                    onChange={(mode) => {
+                        if (this.state.mode == mode) {
+                            this.state.mode == 0 ? this.encrypt() : this.decrypt()
+                        } else {
+                            this.setMode(mode)
+                        }
+                    }}
                     selected={this.state.mode}
                     className="mode-segment"
                 />
@@ -48,41 +56,79 @@ class App extends React.Component {
                     </div>
                     <div className="bottom">
                         <DropdownButton
-                            options={this.state.keyList}
+                            options={this.getDropdownButtonOptionsFromArray(this.state.keyList)}
                             selected={this.state.publicKey}
                             label="Public Key"
-                            onSelect={(key) => {
-                                this.setState({ publicKey: key });
-                                this.store.set('app.publicKey', key);
+                            onSelect={(option) => {
+                                this.setState({ publicKey: option.value });
+                                this.store.set('app.publicKey', option.value);
                             }}
+                            onToggle={() => { this.updateKeyList() }}
                         />
                         <DropdownButton
-                            options={this.state.keyList}
+                            options={this.getDropdownButtonOptionsFromArray(this.state.keyList)}
                             selected={this.state.privateKey}
                             label="Private Key"
-                            onSelect={(key) => {
-                                this.setState({ privateKey: key });
-                                this.store.set('app.privateKey', key);
+                            onSelect={(option) => {
+                                this.setState({ privateKey: option.value });
+                                this.store.set('app.privateKey', option.value);
+                            }}
+                            onToggle={() => { this.updateKeyList() }}
+                        />
+                        <DropdownButton
+                            options={[
+                                { label: 'Generate', value: 'generate' },
+                                { label: 'Import', value: 'import' },
+                                { label: 'Manage', value: 'manage' },
+                            ]}
+                            label="More"
+                            selected={<i className="bi bi-three-dots"></i>}
+                            onSelect={(option) => {
+                                switch (option.value) {
+                                    case 'generate':
+                                        this.setState({ isDialogOpen: !this.state.isDialogOpen })
+                                        break;
+                                    case 'import':
+                                        break;
+                                    case 'manage':
+                                        break;
+                                }
                             }}
                         />
                     </div>
                 </div>
             </div>
+            <Dialog
+                open={this.state.isDialogOpen}
+                header={<DialogHeader title="Generate a Key Pair" />}
+                content={<DialogContent>
+                    <p>Generate a new key pair to encrypt and decrypt your data.</p>
+                </DialogContent>}
+                footer={<DialogFooter actions="Working in Progress..." />}
+                maskOnClick={this.closeDialog}
+            />
         </>
     }
-    componentDidMount = async () => {
+    componentDidMount = () => {
+        this.updateKeyList()
+    }
+    updateKeyList = async () => {
         const keyList = await RSA_CLI.list({ params: { quiet: true } })
-        var options = {}
-        for (const item of keyList) {
-            options[item] = item
+        this.setState({ keyList: keyList })
+    }
+    getDropdownButtonOptionsFromArray(arr, suffix) {
+        if (suffix === undefined) { suffix = [] }
+        var options = []
+        for (const item of arr) {
+            options.push({
+                label: item,
+                value: item,
+            })
         }
-        this.setState({ keyList: options })
-        if (this.state.publicKey === '') {
-            this.setState({ publicKey: keyList[0] })
+        for (const item of suffix) {
+            options.push(item)
         }
-        if (this.state.privateKey === '') {
-            this.setState({ privateKey: keyList[0] })
-        }
+        return options
     }
     setMode(mode) {
         mode = parseInt(mode, 10)
@@ -111,6 +157,9 @@ class App extends React.Component {
             params: { quiet: true }
         })
         this.setState({ output: decrypted })
+    }
+    closeDialog = () => {
+        this.setState({ isDialogOpen: false })
     }
 }
 

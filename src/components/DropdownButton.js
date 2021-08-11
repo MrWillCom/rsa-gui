@@ -14,10 +14,10 @@ class DropdownButton extends React.Component {
     }
     render() {
         var optionsList = []
-        for (const option in this.props.options) {
+        for (const option of this.props.options) {
             optionsList.push(
-                <li className="DropdownButton-Option" key={option}>
-                    <button className="DropdownButton-Option-Button" onClick={() => { this.setState({ open: false }); this.props.onSelect(option) }}>{this.props.options[option]}</button>
+                <li className="DropdownButton-Option" key={option.value}>
+                    <button className="DropdownButton-Option-Button" onClick={() => { this.setState({ open: false }); this.props.onSelect(option) }}>{option.label}</button>
                 </li>
             )
         }
@@ -36,9 +36,13 @@ class DropdownButton extends React.Component {
         </div>
     }
     toggleDropdown = () => {
+        const willOpen = !this.state.open;
         this.updateHeight();
         this.updateOverflowOffset();
-        this.setState({ open: !this.state.open });
+        this.setState({ open: willOpen });
+        if (typeof this.props.onToggle == 'function') {
+            this.props.onToggle(willOpen)
+        }
     }
     componentDidMount = () => {
         this.updateHeight();

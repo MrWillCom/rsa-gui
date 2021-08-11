@@ -46,7 +46,7 @@
     padding: 2px;
     opacity: 1;
     pointer-events: initial;
-    animation: DropdownButton-DropdownAnimation 0.2s var(--timing-func);
+    animation: DropdownButton-DropdownAnimation 0.2s var(--timing-func-decelerate);
 }
 
 @keyframes DropdownButton-DropdownAnimation {
@@ -71,7 +71,7 @@
     background-color: transparent;
     border-radius: 6px;
     transform: translateY(calc(-1 * var(--dropdown-height)));
-    transition: all 0.2s var(--timing-func);
+    transition: all 0.2s var(--timing-func-decelerate);
 }
 
 .DropdownButton>.DropdownButton-Options.open>.DropdownButton-Option>.DropdownButton-Option-Button {
