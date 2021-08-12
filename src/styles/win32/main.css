@@ -3,6 +3,7 @@
 @import url(components/TextArea.css);
 @import url(components/DropdownButton.css);
 @import url(components/Dialog.css);
+@import url(components/Button.css);
 
 body {
     background-color: var(--white);
@@ -13,10 +14,25 @@ body {
     --grey-1: #88888808;
     --grey-2: #8881;
     --accent: #0067c0;
+
     --button-bg: #fbfbfb;
     --button-bg-hover: #f6f6f6;
     --button-bg-active: #f5f5f5;
     --button-border: #ebebeb;
+
+    --button-primary-txt: #fff;
+    --button-primary-bg: #0064c0;
+    --button-primary-bg-hover: #1975C5;
+    --button-primary-bg-active: #3183ca;
+    --button-primary-border: #1473c5;
+
+    --dialog-mask-bg: #0004;
+    --dialog-bg: #ffffff;
+    --dialog-border: #8881;
+    --dialog-shadow: #0002;
+    --dialog-footer-bg: #f3f3f3;
+    --dialog-footer-border: #e5e5e5;
+
     --timing-func-decelerate: cubic-bezier(0, 0, 0, 1);
     --timing-func-accelerate: cubic-bezier(1, 0, 1, 1);
 }
@@ -27,15 +43,22 @@ body {
         --grey-1: #88888818;
         --grey-2: #88888820;
         --accent: #4cc2ff;
+
         --button-bg: #2d2d2d;
         --button-bg-hover: #323232;
         --button-bg-active: #272727;
         --button-border: #303030;
+
+        --button-primary-txt: #000;
+        --button-primary-bg: #4cc2ff;
+        --button-primary-bg-hover: #47b1e8;
+        --button-primary-bg-active: #42a1d2;
+        --button-primary-border: #5ac7ff;
+
         --dialog-mask-bg: #0002;
         --dialog-bg: #2b2b2b;
-        --dialog-border: #8881;
-        --dialog-shadow: #0002;
         --dialog-footer-bg: #202020;
+        --dialog-footer-border: #1d1d1d;
     }
 }
 

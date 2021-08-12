@@ -1,0 +1,30 @@
+.Button {
+    border: 1px solid var(--button-border);
+    background-color: var(--button-bg);
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin: 4px;
+    transition: all 0.15s;
+}
+
+.Button:hover, .Button:focus-visible {
+    background-color: var(--button-bg-hover);
+}
+
+.Button:active {
+    background-color: var(--button-bg-active);
+    transition-duration: 0s;
+}
+
+.Button.Button-Primary {
+    color: var(--button-primary-txt);
+    background-color: var(--button-primary-bg);
+}
+
+.Button.Button-Primary:hover, .Button.Button-Primary:focus-visible {
+    background-color: var(--button-primary-bg-hover);
+}
+
+.Button.Button-Primary:active {
+    background-color: var(--button-primary-bg-active);
+}

@@ -19,7 +19,20 @@
     opacity: 1;
     pointer-events: initial;
     transform: scale(1);
-    transition-timing-function: var(--timing-func-decelerate);
+    animation: open 167ms var(--timing-func-decelerate);
+}
+
+@keyframes open {
+    0% {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        pointer-events: initial;
+        transform: scale(1);
+    }
 }
 
 .Dialog {
@@ -27,7 +40,7 @@
     border: 1px solid var(--dialog-border);
     border-radius: 8px;
     width: 320px;
-    box-shadow: 0px 8px 12px #0004;
+    box-shadow: 0px 8px 32px var(--dialog-shadow);
 }
 
 .DialogHeader {
@@ -37,17 +50,26 @@
     font-weight: 500;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    user-select: none;
 }
 
 .DialogContent {
     padding: 0 var(--main-content-padding);
     padding-bottom: var(--main-content-padding);
     font-size: 14px;
+    user-select: none;
 }
 
 .DialogFooter {
-    padding: var(--main-content-padding);
+    padding: calc(var(--main-content-padding) - 4px);
     background-color: var(--dialog-footer-bg);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    border-top: 1px solid var(--dialog-footer-border);
+    user-select: none;
+    display: flex;
+}
+
+.DialogFooter>* {
+    width: 100%;
 }

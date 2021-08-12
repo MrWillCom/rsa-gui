@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import Store from 'electron-store'
 import RSA_CLI from 'rsa-cli'
 
@@ -7,6 +8,7 @@ import Segment from './components/Segment';
 import TextArea from './components/TextArea';
 import DropdownButton from './components/DropdownButton';
 import Dialog, { DialogHeader, DialogContent, DialogFooter } from './components/Dialog';
+import Button from './components/Button';
 
 class App extends React.Component {
     constructor(props) {
@@ -17,7 +19,10 @@ class App extends React.Component {
             mode: this.store.get('app.mode') || (() => { this.store.set('app.mode', 0); return 0 })(),
             input: '',
             output: '',
-            isDialogOpen: false,
+            isDialogOpen: {
+                generate: false,
+                import: false,
+            },
             keyList: [],
             publicKey: this.store.get('app.publicKey') || <i className="bi bi-chevron-down"></i>,
             privateKey: this.store.get('app.privateKey') || <i className="bi bi-chevron-down"></i>,
@@ -45,7 +50,14 @@ class App extends React.Component {
                             placeholder={`Type here to ${['encrypt', 'decrypt'][this.state.mode]}...`}
                             className={`input ${this.state.mode == 0 ? '' : 'text-smaller'}`}
                             value={this.state.input}
-                            onChange={(ev) => this.setState({ input: ev.target.value })}
+                            onChange={(ev) => {
+                                this.setState({ input: ev.target.value })
+                                if (ev.target.value != '') {
+                                    this.execute()
+                                } else {
+                                    this.setState({ output: '' })
+                                }
+                            }}
                             onKeyDown={(ev) => {
                                 if (ev.code == 'Enter' && ev.ctrlKey === true) {
                                     this.execute()
@@ -86,7 +98,7 @@ class App extends React.Component {
                             onSelect={(option) => {
                                 switch (option.value) {
                                     case 'generate':
-                                        this.setState({ isDialogOpen: !this.state.isDialogOpen })
+                                        this.toggleGenerateDialog(true)
                                         break;
                                     case 'import':
                                         break;
@@ -97,16 +109,19 @@ class App extends React.Component {
                         />
                     </div>
                 </div>
+                <Dialog
+                    open={this.state.isDialogOpen.generate}
+                    header={<DialogHeader title="Generate a Key Pair" />}
+                    content={<DialogContent>
+                        <p>Generate a new key pair to encrypt and decrypt your data.</p>
+                    </DialogContent>}
+                    footer={<DialogFooter actions={[
+                        <Button color="Primary" onClick={this.toggleGenerateDialog}>Generate</Button>,
+                        <Button onClick={this.toggleGenerateDialog}>Cancel</Button>,
+                    ]} />}
+                    maskOnClick={this.toggleGenerateDialog}
+                />
             </div>
-            <Dialog
-                open={this.state.isDialogOpen}
-                header={<DialogHeader title="Generate a Key Pair" />}
-                content={<DialogContent>
-                    <p>Generate a new key pair to encrypt and decrypt your data.</p>
-                </DialogContent>}
-                footer={<DialogFooter actions="Working in Progress..." />}
-                maskOnClick={this.closeDialog}
-            />
         </>
     }
     componentDidMount = () => {
@@ -158,8 +173,12 @@ class App extends React.Component {
         })
         this.setState({ output: decrypted })
     }
-    closeDialog = () => {
-        this.setState({ isDialogOpen: false })
+    toggleGenerateDialog = (willBeOpen) => {
+        if (typeof willBeOpen == 'boolean') {
+            this.setState({ isDialogOpen: { generate: willBeOpen } })
+        } else {
+            this.setState({ isDialogOpen: { generate: !this.state.isDialogOpen.generate } })
+        }
     }
 }
 

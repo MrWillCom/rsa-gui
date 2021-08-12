@@ -17,6 +17,7 @@
     padding: 6px 12px;
     border-radius: 6px;
     margin: 2px;
+    user-select: none;
     transition: all 0.15s;
 }
 
@@ -37,6 +38,7 @@
     background-color: var(--button-bg-active);
     border-radius: 8px;
     overflow: hidden;
+    user-select: none;
     opacity: 0;
     pointer-events: none;
     transform: translateY(var(--overflow-offset));
