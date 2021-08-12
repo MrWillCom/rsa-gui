@@ -60,6 +60,10 @@
     user-select: none;
 }
 
+.DialogContent>.Input {
+    width: calc(100% - var(--main-content-padding));
+}
+
 .DialogFooter {
     padding: calc(var(--main-content-padding) - 4px);
     background-color: var(--dialog-footer-bg);

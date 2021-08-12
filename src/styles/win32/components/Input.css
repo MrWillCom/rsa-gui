@@ -1,0 +1,33 @@
+.Input-Label {
+    display: block;
+    margin: 4px 0;
+    margin-top: 12px;
+}
+
+.Input {
+    outline: none;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-bottom-color: var(--input-border-bottom);
+    font-size: 14px;
+    border-radius: 6px;
+    padding: 8px 10px;
+    padding-bottom: 9px;
+    margin: 0;
+    display: block;
+}
+
+.Input:hover {
+    background-color: var(--input-bg-hover);
+}
+
+.Input:focus {
+    padding-bottom: 8px;
+    background-color: var(--input-bg-focus);
+    border-bottom: 2px solid var(--input-border-bottom-focus);
+}
+
+.Input[type="number"]::-webkit-inner-spin-button, .Input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -4,6 +4,7 @@
 @import url(components/DropdownButton.css);
 @import url(components/Dialog.css);
 @import url(components/Button.css);
+@import url(components/Input.css);
 
 body {
     background-color: var(--white);
@@ -59,6 +60,13 @@ body {
         --dialog-bg: #2b2b2b;
         --dialog-footer-bg: #202020;
         --dialog-footer-border: #1d1d1d;
+
+        --input-bg: #2d2d2d;
+        --input-bg-hover: #323232;
+        --input-bg-focus: #1f1f1f;
+        --input-border: #303030;
+        --input-border-bottom: #9a9a9a;
+        --input-border-bottom-focus: #4cc2ff;
     }
 }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Store from 'electron-store'
 import RSA_CLI from 'rsa-cli'
 
@@ -9,6 +8,7 @@ import TextArea from './components/TextArea';
 import DropdownButton from './components/DropdownButton';
 import Dialog, { DialogHeader, DialogContent, DialogFooter } from './components/Dialog';
 import Button from './components/Button';
+import Input from './components/Input';
 
 class App extends React.Component {
     constructor(props) {
@@ -22,6 +22,12 @@ class App extends React.Component {
             isDialogOpen: {
                 generate: false,
                 import: false,
+            },
+            data: {
+                generate: {
+                    keyName: '',
+                    modulusLength: '',
+                },
             },
             keyList: [],
             publicKey: this.store.get('app.publicKey') || <i className="bi bi-chevron-down"></i>,
@@ -90,8 +96,7 @@ class App extends React.Component {
                         <DropdownButton
                             options={[
                                 { label: 'Generate', value: 'generate' },
-                                { label: 'Import', value: 'import' },
-                                { label: 'Manage', value: 'manage' },
+                                // { label: 'Settings', value: 'settings' },
                             ]}
                             label="More"
                             selected={<i className="bi bi-three-dots"></i>}
@@ -100,10 +105,9 @@ class App extends React.Component {
                                     case 'generate':
                                         this.toggleGenerateDialog(true)
                                         break;
-                                    case 'import':
-                                        break;
-                                    case 'manage':
-                                        break;
+                                    // case 'settings':
+                                    //     this.toggleSettingsPage(true)
+                                    //     break;
                                 }
                             }}
                         />
@@ -112,11 +116,28 @@ class App extends React.Component {
                 <Dialog
                     open={this.state.isDialogOpen.generate}
                     header={<DialogHeader title="Generate a Key Pair" />}
-                    content={<DialogContent>
-                        <p>Generate a new key pair to encrypt and decrypt your data.</p>
-                    </DialogContent>}
+                    content={
+                        <DialogContent>
+                            <p>Generate a new key pair to encrypt and decrypt your data.</p>
+                            <Input
+                                value={this.state.data.generate.keyName}
+                                label="Key Name"
+                                onChange={(ev) => { this.setState({ data: { generate: { keyName: ev.target.value } } }) }}
+                            />
+                            <Input
+                                value={this.state.data.generate.modulusLength}
+                                label="Modulus Length"
+                                placeholder="2048"
+                                type="number"
+                                onChange={(ev) => { this.setState({ data: { generate: { modulusLength: ev.target.value } } }) }}
+                            />
+                        </DialogContent>
+                    }
                     footer={<DialogFooter actions={[
-                        <Button color="Primary" onClick={this.toggleGenerateDialog}>Generate</Button>,
+                        <Button color="Primary" onClick={() => {
+                            this.toggleGenerateDialog()
+                            this.generate()
+                        }}>Generate</Button>,
                         <Button onClick={this.toggleGenerateDialog}>Cancel</Button>,
                     ]} />}
                     maskOnClick={this.toggleGenerateDialog}
@@ -156,6 +177,16 @@ class App extends React.Component {
         } else if (this.state.mode === 1) {
             this.decrypt()
         }
+    }
+    generate = async () => {
+        await RSA_CLI.generate({
+            keyName: this.state.data.generate.keyName,
+            params: {
+                'modulus-length': this.state.data.generate.modulusLength,
+                quiet: true,
+            }
+        })
+        this.updateKeyList()
     }
     encrypt = async () => {
         const encrypted = await RSA_CLI.encrypt({

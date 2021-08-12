@@ -7,6 +7,7 @@
     -webkit-app-region: drag;
     display: flex;
     justify-content: flex-end;
+    z-index: 10000;
 }
 
 .Win32TitleBar>.control {
