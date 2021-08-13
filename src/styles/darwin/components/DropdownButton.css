@@ -7,6 +7,7 @@
     font-size: 12px;
     color: #888;
     margin: 2px;
+    user-select: none;
 }
 
 .DropdownButton>.DropdownButton-Button {
@@ -18,6 +19,7 @@
     padding: 2px 14px;
     font-size: 14px;
     margin: 2px;
+    user-select: none;
 }
 
 .DropdownButton>.DropdownButton-Options {
@@ -34,6 +36,7 @@
     opacity: 0;
     pointer-events: none;
     box-shadow: 0 0 4px var(--shadow-0);
+    user-select: none;
     transition: all 0.3s;
 }
 

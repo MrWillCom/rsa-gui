@@ -4,6 +4,7 @@
 @import url(components/DropdownButton.css);
 @import url(components/Dialog.css);
 @import url(components/Button.css);
+@import url(components/Input.css);
 
 body {
     font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
@@ -32,6 +33,10 @@ body {
     --button-bg-active: #c4c4c4;
     --button-primary-bg: linear-gradient(to bottom, #2e8bfe, #1969cb);
     --button-primary-bg-active: linear-gradient(to bottom, #1c79eb, #065eeb);
+
+    --input-bg: #dddddd;
+    --input-border: #d0d0d0;
+    --input-outline-focus: #4183ee80;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,6 +60,9 @@ body {
         --button-bg-active: #8a8a8a;
         --button-primary-bg: linear-gradient(to bottom, #1d76e4, #1969cb);
         --button-primary-bg-active: linear-gradient(to bottom, #2c9ff3, #368ee3);
+
+        --input-bg: #393939;
+        --input-border: #4c4c4c;
     }
 }
 

@@ -13,6 +13,7 @@
 }
 
 .Button.Button-Primary {
+    color: #fff;
     background-image: var(--button-primary-bg);
 }
 

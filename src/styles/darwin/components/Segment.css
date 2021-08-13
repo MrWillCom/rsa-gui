@@ -11,6 +11,7 @@
     border-radius: 6px;
     outline: none;
     padding: 2px 14px;
+    user-select: none;
 }
 
 .Segment>.Segment-Option:active {

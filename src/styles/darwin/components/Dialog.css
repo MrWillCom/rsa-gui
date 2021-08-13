@@ -55,6 +55,10 @@
     padding: 0 var(--main-content-padding);
 }
 
+.DialogContent>.Input {
+    width: calc(100% - var(--main-content-padding));
+}
+
 .DialogFooter {
     padding: calc(var(--main-content-padding) - 4px);
     user-select: none;
