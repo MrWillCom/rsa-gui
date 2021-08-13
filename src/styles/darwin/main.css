@@ -2,6 +2,8 @@
 @import url(components/Segment.css);
 @import url(components/TextArea.css);
 @import url(components/DropdownButton.css);
+@import url(components/Dialog.css);
+@import url(components/Button.css);
 
 body {
     font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
@@ -20,6 +22,16 @@ body {
     --txt-on-accent-0: #e4eefa;
     --shadow-0: #a9a9a9;
     --blur-0: blur(32px) saturate(1.1);
+
+    --dialog-mask-bg: #0002;
+    --dialog-bg: #eaeaeab3;
+    --dialog-border: #8881;
+    --dialog-shadow: 0 8px 24px #0002;
+
+    --button-bg: #d0d0d0;
+    --button-bg-active: #c4c4c4;
+    --button-primary-bg: linear-gradient(to bottom, #2e8bfe, #1969cb);
+    --button-primary-bg-active: linear-gradient(to bottom, #1c79eb, #065eeb);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,7 +46,15 @@ body {
         --border-2: #3f3f3f;
         --accent-0: #0060d1;
         --txt-on-accent-0: #e4eefa;
-        --shadow-0: #515151;
+        --shadow-0: #0002;
+
+        --dialog-bg: #383838b3;
+        --dialog-border: #8881;
+
+        --button-bg: #6a6a6a;
+        --button-bg-active: #8a8a8a;
+        --button-primary-bg: linear-gradient(to bottom, #1d76e4, #1969cb);
+        --button-primary-bg-active: linear-gradient(to bottom, #2c9ff3, #368ee3);
     }
 }
 

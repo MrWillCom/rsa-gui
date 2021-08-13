@@ -1,0 +1,21 @@
+.Button {
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin: 4px;
+    background-color: var(--button-bg);
+    font-size: 14px;
+}
+
+.Button:active {
+    background-color: var(--button-bg-active);
+}
+
+.Button.Button-Primary {
+    background-image: var(--button-primary-bg);
+}
+
+.Button.Button-Primary:active {
+    background-image: var(--button-primary-bg-active);
+}
