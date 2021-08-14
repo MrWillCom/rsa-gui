@@ -133,13 +133,13 @@ class App extends React.Component {
                             />
                         </DialogContent>
                     }
-                    footer={<DialogFooter actions={[
+                    footer={<DialogFooter actions={<>
                         <Button color="Primary" onClick={() => {
                             this.toggleGenerateDialog()
                             this.generate()
-                        }}>Generate</Button>,
-                        <Button onClick={this.toggleGenerateDialog}>Cancel</Button>,
-                    ]} />}
+                        }}>Generate</Button>
+                        <Button onClick={this.toggleGenerateDialog}>Cancel</Button>
+                    </>} />}
                     maskOnClick={this.toggleGenerateDialog}
                 />
             </div>
