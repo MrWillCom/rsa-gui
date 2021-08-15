@@ -1,0 +1,48 @@
+.NavigationView {
+    display: flex;
+    width: 100%;
+}
+
+.NavigationView>.Navigation {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+
+.NavigationView>.Navigation>.Navigation-Item {
+    text-align: left;
+    margin: 4px;
+    padding: 10px 12px;
+    height: 38px;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    user-select: none;
+}
+
+.NavigationView>.Navigation>.Navigation-Item:hover, .NavigationView>.Navigation>.Navigation-Item:focus-visible {
+    background-color: var(--navigation-item-bg-hover);
+}
+
+.NavigationView>.Navigation>.Navigation-Item:active {
+    background-color: var(--navigation-item-bg-active);
+}
+
+.NavigationView>.Navigation>.Navigation-Item::after {
+    content: '';
+    position: relative;
+    top: -50%;
+    left: -12px;
+    width: 3px;
+    height: 0;
+    display: block;
+    border-radius: 3px;
+    background-color: var(--accent);
+}
+
+.NavigationView>.Navigation>.Navigation-Item.Selected::after {
+    top: calc(-50% - 7px);
+    height: 14px;
+    transition: all 0.15s;
+}

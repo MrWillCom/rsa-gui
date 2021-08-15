@@ -1,0 +1,58 @@
+.Page {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10000;
+    background-color: var(--page-bg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms var(--timing-func-accelerate);
+}
+
+.Page.Open {
+    background-color: var(--page-bg);
+    opacity: 1;
+    pointer-events: initial;
+    transition-timing-function: var(--timing-func-decelerate);
+}
+
+.Page>.Page-BackButton {
+    position: fixed;
+    top: 6px;
+    left: 4px;
+    width: 40px;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    z-index: 10000;
+    -webkit-app-region: no-drag;
+}
+
+.Page>.Page-BackButton:hover, .Page>.Page-BackButton:focus-visible {
+    background-color: var(--page-back-button-bg-hover);
+}
+
+.Page>.Page-BackButton:active {
+    background-color: var(--page-back-button-bg-active);
+}
+
+.Page>.Page-Content {
+    opacity: 0;
+    transform: translateY(64px);
+    transition: 167ms var(--timing-func-accelerate);
+    transition-property: opacity, transform;
+}
+
+.Page.showBackButton>.Page-Content {
+    margin-top: 48px;
+}
+
+.Page.Open>.Page-Content {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-timing-function: var(--timing-func-decelerate);
+    transition-delay: calc(250ms - 167ms);
+}

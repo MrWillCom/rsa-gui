@@ -5,6 +5,9 @@
 @import url(components/Dialog.css);
 @import url(components/Button.css);
 @import url(components/Input.css);
+@import url(components/Page.css);
+@import url(components/NavigationView.css);
+@import url(components/Frame.css);
 
 body {
     background-color: var(--white);
@@ -41,6 +44,8 @@ body {
     --input-border-bottom: #868686;
     --input-border-bottom-focus: #0067c0;
 
+    --page-bg: #fff;
+
     --timing-func-decelerate: cubic-bezier(0, 0, 0, 1);
     --timing-func-accelerate: cubic-bezier(1, 0, 1, 1);
 }
@@ -74,6 +79,13 @@ body {
         --input-border: #303030;
         --input-border-bottom: #9a9a9a;
         --input-border-bottom-focus: #4cc2ff;
+
+        --page-bg: #000;
+        --page-back-button-bg-hover: #ffffff18;
+        --page-back-button-bg-active: #ffffff12;
+
+        --navigation-item-bg-hover: #ffffff18;
+        --navigation-item-bg-active: #ffffff12;
     }
 }
 

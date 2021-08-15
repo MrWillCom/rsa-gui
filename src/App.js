@@ -9,6 +9,8 @@ import DropdownButton from './components/DropdownButton';
 import Dialog, { DialogHeader, DialogContent, DialogFooter } from './components/Dialog';
 import Button from './components/Button';
 import Input from './components/Input';
+import Page from './components/Page';
+import SettingsPage from './pages/Settings';
 
 class App extends React.Component {
     constructor(props) {
@@ -23,6 +25,8 @@ class App extends React.Component {
                 generate: false,
                 import: false,
             },
+            isSettingsPageOpen: false,
+            settingsPageNavigationIndex: 0,
             data: {
                 generate: {
                     keyName: '',
@@ -96,7 +100,7 @@ class App extends React.Component {
                         <DropdownButton
                             options={[
                                 { label: 'Generate', value: 'generate' },
-                                // { label: 'Settings', value: 'settings' },
+                                { label: 'Settings', value: 'settings' },
                             ]}
                             label="More"
                             selected={<i className="bi bi-three-dots"></i>}
@@ -105,9 +109,9 @@ class App extends React.Component {
                                     case 'generate':
                                         this.toggleGenerateDialog(true)
                                         break;
-                                    // case 'settings':
-                                    //     this.toggleSettingsPage(true)
-                                    //     break;
+                                    case 'settings':
+                                        this.toggleSettingsPage(true)
+                                        break;
                                 }
                             }}
                         />
@@ -142,6 +146,13 @@ class App extends React.Component {
                     </>} />}
                     maskOnClick={this.toggleGenerateDialog}
                 />
+                <Page
+                    open={this.state.isSettingsPageOpen}
+                    includeTitleBar={true}
+                    showBackButton={true}
+                    backButtonOnClick={() => { this.toggleSettingsPage(false) }}>
+                    <SettingsPage />
+                </Page>
             </div>
         </>
     }
@@ -209,6 +220,13 @@ class App extends React.Component {
             this.setState({ isDialogOpen: { generate: willBeOpen } })
         } else {
             this.setState({ isDialogOpen: { generate: !this.state.isDialogOpen.generate } })
+        }
+    }
+    toggleSettingsPage = (willBeOpen) => {
+        if (typeof willBeOpen == 'boolean') {
+            this.setState({ isSettingsPageOpen: willBeOpen })
+        } else {
+            this.setState({ isSettingsPageOpen: !this.state.isSettingsPageOpen })
         }
     }
 }

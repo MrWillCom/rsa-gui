@@ -1,0 +1,24 @@
+.Frame {
+    opacity: 0;
+    transform: translateY(64px);
+    animation: entrance 167ms var(--timing-func-decelerate) forwards;
+    animation-delay: calc(250ms - 167ms);
+}
+
+@keyframes entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(64px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.Frame>.Frame-Title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.Frame>.Frame-Content {}
