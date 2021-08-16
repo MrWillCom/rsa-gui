@@ -1,8 +1,8 @@
 .Frame {
-    opacity: 0;
-    transform: translateY(64px);
-    animation: entrance 167ms var(--timing-func-decelerate) forwards;
-    animation-delay: calc(250ms - 167ms);
+    height: calc(100% - 64px);
+    padding-top: 64px;
+    padding-left: 64px;
+    padding-right: 36px;
 }
 
 @keyframes entrance {
@@ -19,6 +19,22 @@
 .Frame>.Frame-Title {
     font-size: 24px;
     font-weight: 500;
+    margin: 0;
+    user-select: none;
 }
 
-.Frame>.Frame-Content {}
+.Frame>.Frame-Content {
+    opacity: 0;
+    transform: translateY(64px);
+    animation: entrance 167ms var(--timing-func-decelerate) forwards;
+    animation-delay: calc(250ms - 167ms);
+}
+
+.FrameContentTitle {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 36px;
+    margin-bottom: 20px;
+    user-select: none;
+}

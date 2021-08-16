@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     width: 320px;
+    height: calc(100vh - 48px);
 }
 
 .NavigationView>.Navigation>.Navigation-Item {
@@ -45,4 +46,10 @@
     top: calc(-50% - 7px);
     height: 14px;
     transition: all 0.15s;
+}
+
+.NavigationView>.Navigation-Frame {
+    width: 100%;
+    background-color: #8882;
+    border-top-left-radius: 6px;
 }

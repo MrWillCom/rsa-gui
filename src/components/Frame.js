@@ -14,4 +14,14 @@ class Frame extends React.Component {
     }
 }
 
+class FrameContentTitle extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return <h3 className={`FrameContentTitle ${typeof this.props.className == 'string' ? this.props.className : ''}`}>{this.props.children}</h3>
+    }
+}
+
 export default Frame;
+export { FrameContentTitle };
