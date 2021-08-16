@@ -13,7 +13,7 @@
 .NavigationView>.Navigation>.Navigation-Item {
     text-align: left;
     margin: 4px;
-    padding: 10px 12px;
+    padding: 10px 14px;
     height: 38px;
     outline: none;
     border: none;
@@ -34,7 +34,7 @@
     content: '';
     position: relative;
     top: -50%;
-    left: -12px;
+    left: -14px;
     width: 3px;
     height: 0;
     display: block;
@@ -46,6 +46,10 @@
     top: calc(-50% - 7px);
     height: 14px;
     transition: all 0.15s;
+}
+
+.NavigationView>.Navigation>.Navigation-Item>.Navigation-Item-Icon {
+    margin-right: 16px;
 }
 
 .NavigationView>.Navigation-Frame {

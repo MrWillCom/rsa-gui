@@ -1,6 +1,7 @@
 import React from 'react';
 
 import NavigationView from '../components/NavigationView';
+import BootstrapIcon from '../components/BootstrapIcon';
 
 import AppearancePage from './Settings/AppearancePage';
 import BehaviorPage from './Settings/BehaviorPage';
@@ -21,9 +22,9 @@ class SettingsPage extends React.Component {
                 this.setState({ index: index })
             }}
             navigation={[
-                { label: 'Appearance' },
-                { label: 'Behavior' },
-                { label: 'Keys' },
+                { icon: <BootstrapIcon name="palette" />, label: 'Appearance' },
+                { icon: <BootstrapIcon name="cursor" />, label: 'Behavior' },
+                { icon: <BootstrapIcon name="key" />, label: 'Keys' },
             ]}
             frames={[
                 <AppearancePage />,

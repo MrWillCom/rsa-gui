@@ -18,7 +18,8 @@ class NavigationView extends React.Component {
                                 onClick={() => this.props.onNavigate(key)}
                                 key={key}
                             >
-                                {item.label}
+                                {item.icon ? <span className="Navigation-Item-Icon">{item.icon}</span> : <></>}
+                                <span>{item.label}</span>
                             </button>
                         );
                     }
