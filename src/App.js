@@ -1,3 +1,4 @@
+import electron from 'electron'
 import React from 'react'
 import Store from 'electron-store'
 import RSA_CLI from 'rsa-cli'
@@ -11,6 +12,7 @@ import Button from './components/Button';
 import Input from './components/Input';
 import Page from './components/Page';
 import SettingsPage from './pages/Settings';
+import BootstrapIcon from './components/BootstrapIcon';
 
 class App extends React.Component {
     constructor(props) {
@@ -99,10 +101,26 @@ class App extends React.Component {
                         />
                         <DropdownButton
                             options={[
+                                { label: 'Copy', value: 'copy' },
+                                { label: 'Paste', value: 'paste' },
+                            ]}
+                            selected={<BootstrapIcon name="clipboard" />}
+                            onSelect={(option) => {
+                                switch (option.value) {
+                                    case 'copy':
+                                        this.copyOutput()
+                                        break;
+                                    case 'paste':
+                                        this.pasteInput()
+                                        break;
+                                }
+                            }}
+                        />
+                        <DropdownButton
+                            options={[
                                 { label: 'Generate', value: 'generate' },
                                 { label: 'Settings', value: 'settings' },
                             ]}
-                            label="More"
                             selected={<i className="bi bi-three-dots"></i>}
                             onSelect={(option) => {
                                 switch (option.value) {
@@ -181,6 +199,12 @@ class App extends React.Component {
         mode = parseInt(mode, 10)
         this.setState({ mode: mode })
         this.store.set('app.mode', mode);
+    }
+    copyOutput() {
+        electron.clipboard.writeText(this.state.output)
+    }
+    pasteInput() {
+        this.setState({ input: electron.clipboard.readText() })
     }
     execute() {
         if (this.state.mode === 0) {
