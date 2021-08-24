@@ -31,6 +31,10 @@
     background-color: var(--navigation-item-bg-active);
 }
 
+.NavigationView>.Navigation>.Navigation-Item.Selected {
+    background-color: var(--navigation-item-bg-hover);
+}
+
 .NavigationView>.Navigation>.Navigation-Item::after {
     content: '';
     position: relative;
@@ -55,6 +59,7 @@
 
 .NavigationView>.Navigation-Frame {
     width: 100%;
-    background-color: #8882;
-    border-top-left-radius: 6px;
+    background-color: var(--navigation-frame-bg);
+    border-top-left-radius: 12px;
+    border: 1px solid var(--navigation-frame-border);
 }

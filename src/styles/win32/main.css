@@ -44,7 +44,15 @@ body {
     --input-border-bottom: #868686;
     --input-border-bottom-focus: #0067c0;
 
-    --page-bg: #fff;
+    --navigation-frame-bg: #fff;
+    --navigation-frame-border: #e5e5e5;
+
+    --page-bg: #f3f3f3;
+    --page-back-button-bg-hover: #66666618;
+    --page-back-button-bg-active: #ababab12;
+
+    --navigation-item-bg-hover: #66666618;
+    --navigation-item-bg-active: #ababab12;
 
     --timing-func-decelerate: cubic-bezier(0, 0, 0, 1);
     --timing-func-accelerate: cubic-bezier(1, 0, 1, 1);
@@ -80,7 +88,10 @@ body {
         --input-border-bottom: #9a9a9a;
         --input-border-bottom-focus: #4cc2ff;
 
-        --page-bg: #000;
+        --navigation-frame-bg: #272727;
+        --navigation-frame-border: #1d1d1d;
+
+        --page-bg: #202020;
         --page-back-button-bg-hover: #ffffff18;
         --page-back-button-bg-active: #ffffff12;
 

@@ -36,6 +36,8 @@
     margin: 0;
     padding: 0;
     background-color: var(--button-bg-active);
+    box-shadow: 0px 4px 8px #00000000;
+    border: 1px solid #8888881f;
     border-radius: 8px;
     overflow: hidden;
     user-select: none;
@@ -46,8 +48,13 @@
 
 .DropdownButton>.DropdownButton-Options.open {
     padding: 2px;
+    box-shadow: 0px 8px 16px #00000024;
     opacity: 1;
     pointer-events: initial;
+    transition-property: box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: var(--timing-func-decelerate);
+    transition-delay: 0.2s;
     animation: DropdownButton-DropdownAnimation 0.2s var(--timing-func-decelerate);
 }
 
