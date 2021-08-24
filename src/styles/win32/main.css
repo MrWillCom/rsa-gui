@@ -8,6 +8,9 @@
 @import url(components/Page.css);
 @import url(components/NavigationView.css);
 @import url(components/Frame.css);
+@import url(components/Link.css);
+
+@import url(pages/Settings/AboutPage.css);
 
 body {
     background-color: var(--white);
@@ -54,6 +57,12 @@ body {
     --navigation-item-bg-hover: #66666618;
     --navigation-item-bg-active: #ababab12;
 
+    --link-txt: #003e92;
+    --link-txt-hover: #001a68;
+    --link-txt-active: #0067c0;
+    --link-bg-hover: #8881;
+    --link-bg-active: #88888806;
+
     --timing-func-decelerate: cubic-bezier(0, 0, 0, 1);
     --timing-func-accelerate: cubic-bezier(1, 0, 1, 1);
 }
@@ -97,6 +106,12 @@ body {
 
         --navigation-item-bg-hover: #ffffff18;
         --navigation-item-bg-active: #ffffff12;
+
+        --link-txt: #99ebff;
+        --link-txt-hover: #99ebff;
+        --link-txt-active: #4cc2ff;
+        --link-bg-hover: #fff1;
+        --link-bg-active: #ffffff06;
     }
 }
 

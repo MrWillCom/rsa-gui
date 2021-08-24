@@ -14,7 +14,7 @@
     transition-duration: 167ms;
 }
 
-@media (max-width: 1010px) {
+@media (max-width: 1008px) {
     .NavigationView>.Navigation {
         width: 50px;
         min-width: 50px;

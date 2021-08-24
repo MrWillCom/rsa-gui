@@ -1,0 +1,19 @@
+.Link {
+    color: var(--link-txt);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin: 0 -8px;
+    transition-property: color, background-color;
+    transition-duration: 0.2s;
+}
+
+.Link:hover, .Link:focus-visible {
+    color: var(--link-txt-hover);
+    background-color: #8881;
+}
+
+.Link:active {
+    color: var(--link-txt-active);
+    background-color: #8881;
+}
