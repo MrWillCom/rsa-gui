@@ -9,6 +9,16 @@
     width: 320px;
     min-width: 320px;
     height: calc(100vh - 48px);
+    transition-property: width, min-width;
+    transition-timing-function: var(--timing-func-decelerate);
+    transition-duration: 167ms;
+}
+
+@media (max-width: 1010px) {
+    .NavigationView>.Navigation {
+        width: 50px;
+        min-width: 50px;
+    }
 }
 
 .NavigationView>.Navigation>.Navigation-Item {
@@ -21,6 +31,8 @@
     border-radius: 6px;
     background-color: transparent;
     user-select: none;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .NavigationView>.Navigation>.Navigation-Item:hover, .NavigationView>.Navigation>.Navigation-Item:focus-visible {
