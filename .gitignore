@@ -3,3 +3,5 @@ yarn.lock
 
 lib/
 dist/
+
+.DS_Store
