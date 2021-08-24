@@ -3,9 +3,7 @@ import React from 'react';
 import NavigationView from '../components/NavigationView';
 import BootstrapIcon from '../components/BootstrapIcon';
 
-import AppearancePage from './Settings/AppearancePage';
-import BehaviorPage from './Settings/BehaviorPage';
-import KeysPage from './Settings/KeysPage';
+import AboutPage from './Settings/AboutPage';
 
 class SettingsPage extends React.Component {
     constructor(props) {
@@ -22,14 +20,10 @@ class SettingsPage extends React.Component {
                 this.setState({ index: index })
             }}
             navigation={[
-                { icon: <BootstrapIcon name="palette" />, label: 'Appearance' },
-                { icon: <BootstrapIcon name="cursor" />, label: 'Behavior' },
-                { icon: <BootstrapIcon name="key" />, label: 'Keys' },
+                { icon: <BootstrapIcon name="info-circle" />, label: 'About' },
             ]}
             frames={[
-                <AppearancePage />,
-                <BehaviorPage />,
-                <KeysPage />,
+                <AboutPage />,
             ]}
         />
     }
