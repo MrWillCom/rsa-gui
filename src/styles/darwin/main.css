@@ -5,6 +5,12 @@
 @import url(components/Dialog.css);
 @import url(components/Button.css);
 @import url(components/Input.css);
+@import url(components/Page.css);
+@import url(components/NavigationView.css);
+@import url(components/Frame.css);
+@import url(components/Link.css);
+
+@import url(pages/Settings/AboutPage.css);
 
 body {
     font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
@@ -37,6 +43,21 @@ body {
     --input-bg: #dddddd;
     --input-border: #d0d0d0;
     --input-outline-focus: #4183ee80;
+
+    --page-bg: #f6f6f6;
+    --page-back-button-txt: #000b;
+    --page-back-button-txt-active: #000;
+    --page-back-button-bg-hover: #8881;
+    --page-back-button-bg-active: #8882;
+
+    --navigation-border: #8881;
+    --navigation-item-bg-hover: #f2f2f2;
+    --navigation-item-txt: #000b;
+    --navigation-item-txt-active: #000;
+    --navigation-item-selected-txt: #0868f5;
+    --navigation-item-selected-txt-active: #034bcd;
+
+    --link-txt: var(--accent-0);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -63,6 +84,18 @@ body {
 
         --input-bg: #393939;
         --input-border: #4c4c4c;
+
+        --page-bg: #282828;
+        --page-back-button-txt: #fffb;
+        --page-back-button-txt-active: #fff;
+        --page-back-button-bg-hover: #fff1;
+        --page-back-button-bg-active: #fff2;
+
+        --navigation-item-bg-hover: #333333;
+        --navigation-item-txt: #fffb;
+        --navigation-item-txt-active: #fff;
+        --navigation-item-selected-txt: #39cffb;
+        --navigation-item-selected-txt-active: #55f1ff;
     }
 }
 

@@ -1,0 +1,28 @@
+.Settings-AboutPage {
+    user-select: none;
+}
+
+.Settings-AboutPage .icon {
+    width: 64px;
+    margin-top: 16px;
+}
+
+.Settings-AboutPage p {
+    font-size: 14px;
+    margin: 4px 0;
+    opacity: 0.8;
+}
+
+.Settings-AboutPage .title {
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.Settings-AboutPage .author .by {
+    opacity: 0.8;
+}
+
+.Settings-AboutPage .tips {
+    margin-top: 24px;
+}

@@ -1,0 +1,55 @@
+.Page {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10000;
+    background-color: var(--page-bg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms;
+}
+
+.Page.Open {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.Page>.Page-BackButton {
+    position: fixed;
+    top: 6px;
+    left: 84px;
+    width: 36px;
+    height: 28px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--page-back-button-txt);
+    z-index: 10000;
+    -webkit-app-region: no-drag;
+}
+
+.Page>.Page-BackButton:hover {
+    background-color: var(--page-back-button-bg-hover);
+}
+
+.Page>.Page-BackButton:active {
+    color: var(--page-back-button-txt-active);
+    background-color: var(--page-back-button-bg-active);
+}
+
+.Page>.Page-Content {
+    opacity: 0;
+    transition: 167ms;
+    transition-property: opacity;
+}
+
+.Page.showBackButton>.Page-Content {
+    margin-top: 38px;
+}
+
+.Page.Open>.Page-Content {
+    opacity: 1;
+    transition-delay: calc(250ms - 167ms);
+}

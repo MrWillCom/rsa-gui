@@ -1,0 +1,8 @@
+.Link {
+    color: var(--link-txt);
+    text-decoration: none;
+}
+
+.Link:active {
+    text-decoration: underline;
+}

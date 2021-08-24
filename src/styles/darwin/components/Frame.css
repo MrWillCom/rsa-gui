@@ -1,0 +1,17 @@
+.Frame>.Frame-Title {
+    margin: 0;
+    font-size: 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+}
+
+.Frame>.Frame-Content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
