@@ -11,7 +11,7 @@ class AboutPage extends React.Component {
     }
     render() {
         return <Frame title="About" className="Settings-AboutPage">
-            <img src="../build/icon.png" className="icon" />
+            <img src="./assets/icon.png" className="icon" />
             <p className="title">RSA GUI</p>
             <p className="version">v{version}</p>
             <p className="author"><span className="by">By</span> Mr. Will</p>

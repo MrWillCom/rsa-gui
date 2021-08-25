@@ -24,18 +24,21 @@ class App extends React.Component {
             input: '',
             output: '',
             isDialogOpen: {
+                password: false,
                 generate: false,
-                import: false,
             },
             isSettingsPageOpen: false,
             settingsPageNavigationIndex: 0,
-            data: {
-                generate: {
-                    keyName: '',
-                    modulusLength: '',
-                },
+            generateDialog: {
+                keyName: '',
+                modulusLength: '',
             },
-            keyList: [],
+            keyList: {
+                public: [],
+                private: [],
+            },
+            passwordEnabled: false,
+            password: '',
             publicKey: this.store.get('app.publicKey') || <i className="bi bi-chevron-down"></i>,
             privateKey: this.store.get('app.privateKey') || <i className="bi bi-chevron-down"></i>,
         }
@@ -65,7 +68,7 @@ class App extends React.Component {
                             onChange={(ev) => {
                                 this.setState({ input: ev.target.value })
                                 if (ev.target.value != '') {
-                                    this.execute()
+                                    this.execute(ev.target.value)
                                 } else {
                                     this.setState({ output: '' })
                                 }
@@ -80,7 +83,7 @@ class App extends React.Component {
                     </div>
                     <div className="bottom">
                         <DropdownButton
-                            options={this.getDropdownButtonOptionsFromArray(this.state.keyList)}
+                            options={this.getDropdownButtonOptionsFromArray(this.state.keyList.public)}
                             selected={this.state.publicKey}
                             label="Public Key"
                             onSelect={(option) => {
@@ -90,7 +93,7 @@ class App extends React.Component {
                             onToggle={() => { this.updateKeyList() }}
                         />
                         <DropdownButton
-                            options={this.getDropdownButtonOptionsFromArray(this.state.keyList)}
+                            options={this.getDropdownButtonOptionsFromArray(this.state.keyList.private)}
                             selected={this.state.privateKey}
                             label="Private Key"
                             onSelect={(option) => {
@@ -101,8 +104,8 @@ class App extends React.Component {
                         />
                         <DropdownButton
                             options={[
-                                { label: 'Copy', value: 'copy' },
-                                { label: 'Paste', value: 'paste' },
+                                { label: 'Copy Output', value: 'copy' },
+                                { label: 'Paste Input', value: 'paste' },
                             ]}
                             selected={<BootstrapIcon name="clipboard" />}
                             onSelect={(option) => {
@@ -117,13 +120,23 @@ class App extends React.Component {
                             }}
                         />
                         <DropdownButton
-                            options={[
-                                { label: 'Generate', value: 'generate' },
-                                { label: 'Settings', value: 'settings' },
-                            ]}
+                            options={(() => {
+                                var options = []
+                                if (this.state.passwordEnabled == true) {
+                                    options.push({ label: 'Password', value: 'password' })
+                                }
+                                options = options.concat([
+                                    { label: 'Generate', value: 'generate' },
+                                    { label: 'Settings', value: 'settings' },
+                                ])
+                                return options
+                            })()}
                             selected={<i className="bi bi-three-dots"></i>}
                             onSelect={(option) => {
                                 switch (option.value) {
+                                    case 'password':
+                                        this.togglePasswordDialog(true)
+                                        break;
                                     case 'generate':
                                         this.toggleGenerateDialog(true)
                                         break;
@@ -142,16 +155,16 @@ class App extends React.Component {
                         <DialogContent>
                             <p>Generate a new key pair to encrypt and decrypt your data.</p>
                             <Input
-                                value={this.state.data.generate.keyName}
+                                value={this.state.generateDialog.keyName}
                                 label="Key Name"
-                                onChange={(ev) => { this.setState({ data: { generate: { keyName: ev.target.value } } }) }}
+                                onChange={(ev) => { this.setState({ generateDialog: { keyName: ev.target.value } }) }}
                             />
                             <Input
-                                value={this.state.data.generate.modulusLength}
+                                value={this.state.generateDialog.modulusLength}
                                 label="Modulus Length"
                                 placeholder="2048"
                                 type="number"
-                                onChange={(ev) => { this.setState({ data: { generate: { modulusLength: ev.target.value } } }) }}
+                                onChange={(ev) => { this.setState({ generateDialog: { modulusLength: ev.target.value } }) }}
                             />
                         </DialogContent>
                     }
@@ -163,6 +176,31 @@ class App extends React.Component {
                         <Button onClick={this.toggleGenerateDialog}>Cancel</Button>
                     </>} />}
                     maskOnClick={this.toggleGenerateDialog}
+                />
+                <Dialog
+                    open={this.state.isDialogOpen.password}
+                    header={<DialogHeader title="Enter Password" />}
+                    content={
+                        <DialogContent>
+                            <p>Enter password to access your private keys.</p>
+                            <Input
+                                value={this.state.password}
+                                type="password"
+                                onChange={(ev) => {
+                                    this.setState({ password: ev.target.value })
+                                }}
+                                onKeyDown={(ev) => {
+                                    if (ev.code == 'Enter' || ev.code == 'NumpadEnter') {
+                                        this.togglePasswordDialog()
+                                    }
+                                }}
+                            />
+                        </DialogContent>
+                    }
+                    footer={<DialogFooter actions={<>
+                        <Button color={this.state.passwordEnabled == true && this.state.password == '' ? '' : 'Primary'} onClick={this.togglePasswordDialog}>Confirm</Button>
+                        {this.state.passwordEnabled == true ? <></> : <Button onClick={this.togglePasswordDialog}>Cancel</Button>}
+                    </>} />}
                 />
                 <Page
                     open={this.state.isSettingsPageOpen}
@@ -176,10 +214,47 @@ class App extends React.Component {
     }
     componentDidMount = () => {
         this.updateKeyList()
+        window.addEventListener('keydown', this.keyboardShortcutsHandler)
+        this.getPasswordStatus().then(() => {
+            if (this.state.passwordEnabled == true) {
+                this.togglePasswordDialog(true)
+            }
+        })
+    }
+    componentWillUnmount = () => {
+        window.removeEventListener('keydown', this.keyboardShortcutsHandler)
+    }
+    keyboardShortcutsHandler = (ev) => {
+        if (ev.ctrlKey === true) {
+            switch (ev.code) {
+                case 'Comma':
+                    this.toggleSettingsPage()
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    getPasswordStatus = async () => {
+        const passwordStatus = await RSA_CLI.password({ keyName: 'status', params: { quiet: true } })
+        this.setState({ passwordEnabled: passwordStatus })
     }
     updateKeyList = async () => {
-        const keyList = await RSA_CLI.list({ params: { quiet: true } })
-        this.setState({ keyList: keyList })
+        const list = await RSA_CLI.list({ params: { quiet: true } })
+        var result = {
+            public: [],
+            private: [],
+        }
+        for (const i in list) {
+            const key = list[i];
+            if (key.public == true) {
+                result.public.push(i)
+            }
+            if (key.private == true) {
+                result.private.push(i)
+            }
+        }
+        this.setState({ keyList: result })
     }
     getDropdownButtonOptionsFromArray(arr, suffix) {
         if (suffix === undefined) { suffix = [] }
@@ -206,38 +281,61 @@ class App extends React.Component {
     pasteInput() {
         this.setState({ input: electron.clipboard.readText() })
     }
-    execute() {
+    execute(input) {
         if (this.state.mode === 0) {
-            this.encrypt()
+            this.encrypt(input)
         } else if (this.state.mode === 1) {
-            this.decrypt()
+            this.decrypt(input)
         }
     }
-    generate = async () => {
-        await RSA_CLI.generate({
-            keyName: this.state.data.generate.keyName,
+    generate = () => {
+        RSA_CLI.generate({
+            keyName: this.state.generateDialog.keyName,
             params: {
-                'modulus-length': this.state.data.generate.modulusLength,
+                'modulus-length': this.state.generateDialog.modulusLength,
                 quiet: true,
+                password: this.state.password,
             }
+        }).then(() => {
+            this.updateKeyList()
+        }).catch((err) => {
+            console.error(err)
         })
-        this.updateKeyList()
     }
     encrypt = async () => {
-        const encrypted = await RSA_CLI.encrypt({
+        RSA_CLI.encrypt({
             keyName: this.state.publicKey,
             object: this.state.input,
             params: { quiet: true }
+        }).then((encrypted) => {
+            this.setState({ output: encrypted })
+        }).catch((err) => {
+            if (err.code == 'RSA_CLI:DATA_TOO_LARGE_FOR_KEY_SIZE') {
+                this.setState({ output: 'Data too large for key size.' })
+            }
         })
-        this.setState({ output: encrypted })
     }
-    decrypt = async () => {
-        const decrypted = await RSA_CLI.decrypt({
+    decrypt = (input) => {
+        RSA_CLI.decrypt({
             keyName: this.state.privateKey,
-            object: this.state.input,
-            params: { quiet: true }
+            object: input ?? this.state.input,
+            params: { quiet: true, password: this.state.password }
+        }).then((decrypted) => {
+            this.setState({ output: decrypted })
+        }).catch((err) => {
+            if (err.code == 'ERR_OSSL_RSA_DATA_LEN_NOT_EQUAL_TO_MOD_LEN' || err.code == 'ERR_OSSL_RSA_OAEP_DECODING_ERROR' || err.code == 'RSA_CLI:FAILED_TO_DECRYPT') {
+                this.setState({ output: 'Failed to decrypt.' })
+            } else if (err.code == 'RSA_CLI:PASSWORD_INCORRECT') {
+                this.setState({ output: 'Password is incorrect.' })
+            }
         })
-        this.setState({ output: decrypted })
+    }
+    togglePasswordDialog = (willBeOpen) => {
+        if (typeof willBeOpen == 'boolean') {
+            this.setState({ isDialogOpen: { password: willBeOpen } })
+        } else {
+            this.setState({ isDialogOpen: { password: !this.state.isDialogOpen.password } })
+        }
     }
     toggleGenerateDialog = (willBeOpen) => {
         if (typeof willBeOpen == 'boolean') {

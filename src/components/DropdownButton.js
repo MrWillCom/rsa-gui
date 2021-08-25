@@ -49,6 +49,9 @@ class DropdownButton extends React.Component {
         this.updateOverflowOffset();
         window.addEventListener('resize', this.updateOverflowOffset);
     }
+    componentWillUnmount = () => {
+        window.removeEventListener('resize', this.updateOverflowOffset);
+    }
     updateHeight = () => {
         this.setState({ optionsListHeight: this.optionsListRef.current.clientHeight })
     }
