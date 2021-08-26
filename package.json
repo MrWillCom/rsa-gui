@@ -14,9 +14,11 @@
         "build": "babel src --out-dir lib --copy-files",
         "pack": "electron-builder --dir",
         "dist": "electron-builder",
-        "dist-win": "electron-builder --win --x64 && electron-builder --win --ia32 && electron-builder --win --arm64",
-        "dist-mac": "electron-builder --mac --x64",
-        "dist-linux": "electron-builder --linux"
+        "dist-win-x64": "electron-builder --win --x64",
+        "dist-mac-x64": "electron-builder --mac --x64",
+        "dist-mac-arm64": "electron-builder --mac --arm64",
+        "dist-mac-universal": "electron-builder --mac --universal",
+        "dist-linux-x64": "electron-builder --linux --x64"
     },
     "dependencies": {
         "@babel/plugin-transform-runtime": "^7.15.0",
