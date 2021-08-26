@@ -1,4 +1,5 @@
 import React from 'react';
+import electron from 'electron';
 
 import NavigationView from '../components/NavigationView';
 import BootstrapIcon from '../components/BootstrapIcon';
@@ -26,6 +27,14 @@ class SettingsPage extends React.Component {
                 <AboutPage />,
             ]}
         />
+    }
+    componentDidMount = () => {
+        electron.ipcRenderer.on('menu:about', () => {
+            this.setState({ index: 0 })
+        })
+    }
+    componentWillUnmount = () => {
+        electron.ipcRenderer.removeAllListeners('menu:about')
     }
 }
 

@@ -220,9 +220,31 @@ class App extends React.Component {
                 this.togglePasswordDialog(true)
             }
         })
+        electron.ipcRenderer.on('menu:encrypt', () => {
+            if (this.state.mode != 0) {
+                this.setState({ mode: 0 })
+            }
+            this.execute()
+        })
+        electron.ipcRenderer.on('menu:decrypt', () => {
+            if (this.state.mode != 1) {
+                this.setState({ mode: 1 })
+            }
+            this.execute()
+        })
+        electron.ipcRenderer.on('menu:password', () => {
+            this.setState({ isDialogOpen: { password: true } })
+        })
+        electron.ipcRenderer.on('menu:settings', () => {
+            this.setState({ isSettingsPageOpen: true })
+        })
     }
     componentWillUnmount = () => {
         window.removeEventListener('keydown', this.keyboardShortcutsHandler)
+        electron.ipcRenderer.removeAllListeners('menu:encrypt')
+        electron.ipcRenderer.removeAllListeners('menu:decrypt')
+        electron.ipcRenderer.removeAllListeners('menu:password')
+        electron.ipcRenderer.removeAllListeners('menu:settings')
     }
     keyboardShortcutsHandler = (ev) => {
         if (ev.ctrlKey === true) {

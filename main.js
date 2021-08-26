@@ -51,16 +51,18 @@ class Background {
   }
 
   handleAppEvents() {
+    electron.app.setName('RSA GUI')
+
     electron.app.whenReady().then(() => {
-      this.createWindow()
+      this.createWindow();
       this.handleWindowEvents();
       this.handleIpcMainEvents();
+      this.applyAppMenu();
 
       electron.app.on('activate', () => {
         if (electron.BrowserWindow.getAllWindows().length === 0) {
-          this.createWindow()
+          this.createWindow();
           this.handleWindowEvents();
-          this.handleIpcMainEvents();
         }
       })
     })
@@ -109,6 +111,60 @@ class Background {
   handleIpcMainEvents() { }
 
   handleGlobalShortcut() { }
+
+  applyAppMenu() {
+    const template = [
+      {
+        label: electron.app.name,
+        submenu: [
+          {
+            label: 'About',
+            click: () => {
+              this.window.webContents.send('menu:settings')
+              this.window.webContents.send('menu:about')
+            }
+          },
+          { type: 'separator' },
+          { role: 'quit' }
+        ]
+      },
+      {
+        label: 'En/Decryption',
+        submenu: [
+          {
+            label: 'Encrypt',
+            click: () => { this.window.webContents.send('menu:encrypt') },
+          }, {
+            label: 'Decrypt',
+            click: () => { this.window.webContents.send('menu:decrypt') },
+          },
+        ]
+      },
+      {
+        label: 'Password',
+        submenu: [
+          {
+            label: 'Re-enter password',
+            click: () => { this.window.webContents.send('menu:password') },
+          },
+        ]
+      },
+      {
+        label: 'View',
+        submenu: [
+          { role: 'reload' },
+          { role: 'forceReload' },
+          { type: 'separator' },
+          { role: 'toggleDevTools' },
+          { type: 'separator' },
+          { role: 'togglefullscreen' }
+        ]
+      },
+      { role: 'windowMenu' },
+    ]
+    const menu = electron.Menu.buildFromTemplate(template)
+    electron.Menu.setApplicationMenu(menu)
+  }
 }
 
 new Background()
