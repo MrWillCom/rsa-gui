@@ -5,6 +5,7 @@
 .Settings-AboutPage .icon {
     width: 64px;
     margin-top: 16px;
+    -webkit-user-drag: none;
 }
 
 .Settings-AboutPage p {
