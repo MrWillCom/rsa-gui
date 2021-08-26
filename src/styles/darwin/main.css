@@ -27,7 +27,7 @@ body {
     --border-2: #d0d0d0;
     --accent-0: #0165e1;
     --txt-on-accent-0: #e4eefa;
-    --shadow-0: #a9a9a9;
+    --shadow-0: #0004;
     --blur-0: blur(32px) saturate(1.1);
 
     --dialog-mask-bg: #0002;
