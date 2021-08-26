@@ -1,7 +1,7 @@
 {
     "name": "rsa-gui",
     "description": "The GUI for RSA CLI.",
-    "version": "0.0.0",
+    "version": "0.1.0-beta.0",
     "author": {
         "name": "MrWillCom",
         "email": "mr.will.com@outlook.com",
