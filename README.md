@@ -30,3 +30,19 @@ If you didn't find the right installer, check [Development](#development) to bui
    ```sh
    $ yarn run dist
    ```
+
+## Key Features
+
+- Instant en/decryption preview.
+- Dynamic native-like UI on Windows & macOS.
+- ...
+
+## Preview
+
+![Screenshot on Windows (Light mode)](./assets/screenshot-win32-light.png)
+
+![Screenshot on Windows (Dark mode)](./assets/screenshot-win32-dark.png)
+
+![Screenshot on macOS (Light mode)](./assets/screenshot-darwin-light.png)
+
+![Screenshot on macOS (Dark mode)](./assets/screenshot-darwin-dark.png)
