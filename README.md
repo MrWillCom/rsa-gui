@@ -4,7 +4,13 @@
 
 <p align="center">The GUI for <a href="https://github.com/MrWillCom/rsa-cli">RSA CLI</a>.</p>
 
-<p align="center">🚧 Working in Progress... 🚧</p>
+## Installation
+
+Download installer from [Releases](https://github.com/MrWillCom/rsa-gui/releases). And follow the instructions in the installers to install RSA GUI.
+
+Plus, we recommend you to install [RSA CLI](https://github.com/MrWillCom/rsa-cli) for more advanced configurations.
+
+If you didn't find the right installer, check [Development](#development) to build one.
 
 ## Development
 
