@@ -30,7 +30,7 @@
         "normalize.css": "^8.0.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
-        "rsa-cli": "^0.1.2-beta.3"
+        "rsa-cli": "^1.0.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.14.8",
