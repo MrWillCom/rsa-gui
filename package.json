@@ -14,10 +14,12 @@
         "build": "babel src --out-dir lib --copy-files",
         "pack": "electron-builder --dir",
         "dist": "electron-builder",
+        "dist-win-ia32": "electron-builder --win --ia32",
         "dist-win-x64": "electron-builder --win --x64",
+        "dist-win-arm64": "electron-builder --win --arm64",
         "dist-mac-x64": "electron-builder --mac --x64",
-        "dist-mac-arm64": "electron-builder --mac --arm64",
         "dist-mac-universal": "electron-builder --mac --universal",
+        "dist-mac-arm64": "electron-builder --mac --arm64",
         "dist-linux-x64": "electron-builder --linux --x64"
     },
     "dependencies": {
