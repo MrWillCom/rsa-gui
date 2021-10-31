@@ -1,0 +1,23 @@
+.Settings-KeysPage {
+    user-select: none;
+}
+
+.Settings-KeysPage .viewer {
+    display: flex;
+    margin-top: 16px;
+}
+
+.Settings-KeysPage .viewer .list {
+    width: 100%;
+    margin-left: -16px;
+    margin-right: 16px;
+}
+
+.Settings-KeysPage .viewer .preview {
+    width: 320px;
+}
+
+.Settings-KeysPage .viewer .preview .key-name {
+    font-size: 20px;
+    font-weight: 600;
+}

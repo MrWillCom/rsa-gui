@@ -9,8 +9,10 @@
 @import url(components/NavigationView.css);
 @import url(components/Frame.css);
 @import url(components/Link.css);
+@import url(components/ListView.css);
 
 @import url(pages/Settings/AboutPage.css);
+@import url(pages/Settings/KeysPage.css);
 
 body {
     background-color: var(--white);
@@ -63,6 +65,9 @@ body {
     --link-bg-hover: #8881;
     --link-bg-active: #88888806;
 
+    --list-item-bg-hover: #eaeaea;
+    --list-item-bg-active: #ededed;
+
     --timing-func-decelerate: cubic-bezier(0, 0, 0, 1);
     --timing-func-accelerate: cubic-bezier(1, 0, 1, 1);
 }
@@ -112,6 +117,9 @@ body {
         --link-txt-active: #4cc2ff;
         --link-bg-hover: #fff1;
         --link-bg-active: #ffffff06;
+
+        --list-item-bg-hover: #2d2d2d;
+        --list-item-bg-active: #292929;
     }
 }
 

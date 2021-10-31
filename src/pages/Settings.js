@@ -5,6 +5,7 @@ import NavigationView from '../components/NavigationView';
 import BootstrapIcon from '../components/BootstrapIcon';
 
 import AboutPage from './Settings/AboutPage';
+import KeysPage from './Settings/KeysPage';
 
 class SettingsPage extends React.Component {
     constructor(props) {
@@ -21,9 +22,11 @@ class SettingsPage extends React.Component {
                 this.setState({ index: index })
             }}
             navigation={[
+                { icon: <BootstrapIcon name="key" />, label: 'Keys' },
                 { icon: <BootstrapIcon name="info-circle" />, label: 'About' },
             ]}
             frames={[
+                <KeysPage />,
                 <AboutPage />,
             ]}
         />
