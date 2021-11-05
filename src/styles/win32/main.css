@@ -35,6 +35,8 @@ body {
     --button-primary-bg-active: #3183ca;
     --button-primary-border: #1473c5;
 
+    --dropdown-button-options-bg: #272727bf;
+
     --dialog-mask-bg: #0004;
     --dialog-bg: #ffffff;
     --dialog-border: #8881;
@@ -70,6 +72,8 @@ body {
 
     --timing-func-decelerate: cubic-bezier(0, 0, 0, 1);
     --timing-func-accelerate: cubic-bezier(1, 0, 1, 1);
+
+    --filter-acrylic: blur(36px) saturate(1.2);
 }
 
 @media (prefers-color-scheme: dark) {

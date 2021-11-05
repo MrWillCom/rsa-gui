@@ -35,7 +35,8 @@
     width: max-content;
     margin: 0;
     padding: 0;
-    background-color: var(--button-bg-active);
+    background-color: var(--dropdown-button-options-bg);
+    backdrop-filter: var(--filter-acrylic);
     box-shadow: 0px 4px 8px #00000000;
     border: 1px solid #8888881f;
     border-radius: 8px;
