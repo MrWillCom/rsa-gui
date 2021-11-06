@@ -1,6 +1,7 @@
 import React from 'react';
 
 import RSA_CLI from 'rsa-cli'
+import QRCode from 'qrcode'
 
 import Frame from '../../components/Frame';
 import ListView, { ListItem } from '../../components/ListView';
@@ -10,6 +11,7 @@ class KeysPage extends React.Component {
         super(props)
 
         this.state = { keyList: [], selectedKey: '' }
+        this.qr = React.createRef()
     }
     render() {
         return <Frame title="Keys" className="Settings-KeysPage">
@@ -20,7 +22,7 @@ class KeysPage extends React.Component {
                     </ListView>
                 </div>
                 <div className="preview">
-                    <div className="key-name">{this.state.selectedKey}</div>
+                    <canvas className="qr" ref={this.qr}></canvas>
                 </div>
             </div>
         </Frame>
@@ -37,15 +39,23 @@ class KeysPage extends React.Component {
         var items = []
 
         for (const keyName in this.state.keyList) {
-            const element = this.state.keyList[keyName];
             items.push(<ListItem
                 key={keyName}
                 selected={keyName == this.state.selectedKey}
-                onSelect={() => this.setState({ selectedKey: keyName })}
+                onSelect={() => { this.setSelectedKey(keyName) }}
             >{keyName}</ListItem>)
         }
 
         return items
+    }
+    setSelectedKey = async (keyName) => {
+        this.setState({ selectedKey: keyName })
+
+        const keyPair = await RSA_CLI.get({ keyName, params: { quiet: true } })
+
+        QRCode.toCanvas(this.qr.current, keyPair.public, (error) => {
+            if (error) console.error(error)
+        })
     }
 }
 

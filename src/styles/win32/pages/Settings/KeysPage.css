@@ -14,10 +14,13 @@
 }
 
 .Settings-KeysPage .viewer .preview {
-    width: 320px;
+    width: 40vw;
+    max-width: 420px;
 }
 
-.Settings-KeysPage .viewer .preview .key-name {
-    font-size: 20px;
-    font-weight: 600;
+.Settings-KeysPage .viewer .preview .qr {
+    width: 40vw!important;
+    height: 40vw!important;
+    max-width: 420px;
+    max-height: 420px;
 }
