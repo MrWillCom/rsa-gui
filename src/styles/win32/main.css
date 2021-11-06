@@ -35,7 +35,7 @@ body {
     --button-primary-bg-active: #3183ca;
     --button-primary-border: #1473c5;
 
-    --dropdown-button-options-bg: #272727bf;
+    --dropdown-button-options-bg: #f5f5f5bf;
 
     --dialog-mask-bg: #0004;
     --dialog-bg: #ffffff;
@@ -67,8 +67,8 @@ body {
     --link-bg-hover: #8881;
     --link-bg-active: #88888806;
 
-    --list-item-bg-hover: #eaeaea;
-    --list-item-bg-active: #ededed;
+    --list-item-bg-hover: #8888881a;
+    --list-item-bg-active: #8888880d;
 
     --timing-func-decelerate: cubic-bezier(0, 0, 0, 1);
     --timing-func-accelerate: cubic-bezier(1, 0, 1, 1);
@@ -93,6 +93,8 @@ body {
         --button-primary-bg-hover: #47b1e8;
         --button-primary-bg-active: #42a1d2;
         --button-primary-border: #5ac7ff;
+
+        --dropdown-button-options-bg: #272727bf;
 
         --dialog-mask-bg: #0002;
         --dialog-bg: #2b2b2b;
@@ -121,9 +123,6 @@ body {
         --link-txt-active: #4cc2ff;
         --link-bg-hover: #fff1;
         --link-bg-active: #ffffff06;
-
-        --list-item-bg-hover: #2d2d2d;
-        --list-item-bg-active: #292929;
     }
 }
 
