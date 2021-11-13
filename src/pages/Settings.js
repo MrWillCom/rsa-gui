@@ -26,7 +26,7 @@ class SettingsPage extends React.Component {
                 { icon: <BootstrapIcon name="info-circle" />, label: 'About' },
             ]}
             frames={[
-                <KeysPage />,
+                <KeysPage password={this.props.password} />,
                 <AboutPage />,
             ]}
         />

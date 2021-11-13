@@ -5,12 +5,13 @@ import QRCode from 'qrcode'
 
 import Frame from '../../components/Frame';
 import ListView, { ListItem } from '../../components/ListView';
+import Segment from '../../components/Segment';
 
 class KeysPage extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = { keyList: [], selectedKey: '' }
+        this.state = { keyList: [], selectedKey: '', keyType: 0 }
         this.qr = React.createRef()
     }
     render() {
@@ -22,7 +23,14 @@ class KeysPage extends React.Component {
                     </ListView>
                 </div>
                 <div className="preview">
-                    <canvas className="qr" ref={this.qr}></canvas>
+                    <Segment
+                        options={['Public', 'Private']}
+                        onChange={(index) => {
+                            this.setKeyType(index)
+                        }}
+                        selected={this.state.keyType}
+                    />
+                    <canvas className={`qr ${this.state.keyType == '1' ? 'private' : ''}`} ref={this.qr}></canvas>
                 </div>
             </div>
         </Frame>
@@ -48,14 +56,28 @@ class KeysPage extends React.Component {
 
         return items
     }
-    setSelectedKey = async (keyName) => {
+    setSelectedKey = (keyName) => {
         this.setState({ selectedKey: keyName })
 
-        const keyPair = await RSA_CLI.get({ keyName, params: { quiet: true } })
+        this.updatePreview(keyName, this.state.keyType)
+    }
+    updatePreview = async (keyName, keyType) => {
+        try {
+            const keyPair = await RSA_CLI.get({ keyName, params: { quiet: true, private: keyType == "1", password: this.props.password } })
 
-        QRCode.toCanvas(this.qr.current, keyPair.public, (error) => {
-            if (error) console.error(error)
-        })
+            QRCode.toCanvas(this.qr.current, keyType == "0" ? keyPair.public : keyPair.private, (err) => {
+                if (err) throw err
+            })
+        } catch (error) {
+            this.qr.current.getContext('2d').clearRect(0, 0, this.qr.current.width, this.qr.current.height)
+
+            console.error(error)
+        }
+    }
+    setKeyType = (keyType) => {
+        this.setState({ keyType })
+
+        this.updatePreview(this.state.selectedKey, keyType)
     }
 }
 

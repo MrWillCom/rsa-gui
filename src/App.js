@@ -207,7 +207,7 @@ class App extends React.Component {
                     includeTitleBar={true}
                     showBackButton={true}
                     backButtonOnClick={() => { this.toggleSettingsPage(false) }}>
-                    <SettingsPage />
+                    <SettingsPage password={this.state.password} />
                 </Page>
             </div>
         </>
