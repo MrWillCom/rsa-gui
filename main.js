@@ -48,6 +48,8 @@ class Background {
     win.loadFile('lib/index.html')
 
     this.window = win
+
+    this.handleWindowEvents();
   }
 
   handleAppEvents() {
@@ -55,14 +57,12 @@ class Background {
 
     electron.app.whenReady().then(() => {
       this.createWindow();
-      this.handleWindowEvents();
       this.handleIpcMainEvents();
       this.applyAppMenu();
 
       electron.app.on('activate', () => {
         if (electron.BrowserWindow.getAllWindows().length === 0) {
           this.createWindow();
-          this.handleWindowEvents();
         }
       })
     })
