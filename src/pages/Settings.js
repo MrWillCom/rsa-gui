@@ -33,7 +33,7 @@ class SettingsPage extends React.Component {
     }
     componentDidMount = () => {
         electron.ipcRenderer.on('menu:about', () => {
-            this.setState({ index: 0 })
+            this.setState({ index: 1 })
         })
     }
     componentWillUnmount = () => {
